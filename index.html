@@ -1,0 +1,2063 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日本語 — Japanisch A1</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;700;900&family=Noto+Sans+JP:wght@300;400;500;600&family=Shippori+Mincho:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sumi: #1a1410;
+  --ink: #2d2418;
+  --washi: #f7f2e8;
+  --washi2: #ede6d3;
+  --washi3: #e3dac9;
+  --sakura: #d4829a;
+  --sakura-light: #f5dce5;
+  --sakura-pale: #fdf0f4;
+  --gold: #b8922a;
+  --gold-light: #d4aa4e;
+  --gold-pale: #f5e8c8;
+  --red-jp: #c0392b;
+  --red-deep: #9b2c20;
+  --teal: #2e7d6e;
+  --teal-light: #d0ede9;
+  --indigo: #1e3a5f;
+  --mist: rgba(247,242,232,0.95);
+  --shadow-warm: rgba(26,20,16,0.12);
+  --shadow-deep: rgba(26,20,16,0.25);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--washi);
+  font-family: 'Noto Sans JP', sans-serif;
+  color: var(--sumi);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── JAPANESE PAPER TEXTURE ── */
+body::before {
+  content:'';
+  position:fixed; inset:0;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M0 30 Q15 28 30 30 Q45 32 60 30' stroke='%23c9a84c' stroke-width='0.3' fill='none' opacity='0.15'/%3E%3Cpath d='M0 15 Q15 13 30 15 Q45 17 60 15' stroke='%23c9a84c' stroke-width='0.2' fill='none' opacity='0.1'/%3E%3Cpath d='M0 45 Q15 43 30 45 Q45 47 60 45' stroke='%23c9a84c' stroke-width='0.2' fill='none' opacity='0.1'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse at 10% 20%, rgba(212,130,154,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 90% 80%, rgba(201,168,76,0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(46,125,110,0.03) 0%, transparent 70%);
+  pointer-events:none; z-index:0;
+}
+
+/* Sakura petals decoration */
+.petal {
+  position:fixed;
+  width:12px; height:14px;
+  background: radial-gradient(ellipse at 40% 30%, #f9c8d8, #e8a0b8);
+  border-radius: 50% 0 50% 0;
+  opacity:0;
+  pointer-events:none;
+  z-index:0;
+  animation: fall linear infinite;
+}
+@keyframes fall {
+  0% { transform: translateY(-20px) rotate(0deg); opacity:0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.3; }
+  100% { transform: translateY(105vh) rotate(720deg) translateX(40px); opacity:0; }
+}
+
+.container { max-width:920px; margin:0 auto; padding:0 1.5rem 6rem; position:relative; z-index:1; }
+
+/* ── HEADER ── */
+header {
+  text-align:center;
+  padding: 4rem 0 2rem;
+  position:relative;
+}
+
+.header-kanji-bg {
+  position:absolute;
+  top:0; left:50%; transform:translateX(-50%);
+  font-family:'Shippori Mincho', serif;
+  font-size:14rem;
+  font-weight:800;
+  color:rgba(26,20,16,0.04);
+  letter-spacing:-0.1em;
+  line-height:1;
+  pointer-events:none;
+  user-select:none;
+  white-space:nowrap;
+}
+
+.jp-title {
+  font-family:'Shippori Mincho', serif;
+  font-size:5rem;
+  font-weight:800;
+  color: var(--sumi);
+  letter-spacing:0.2em;
+  line-height:1;
+  position:relative;
+  display:inline-block;
+  text-shadow: 2px 3px 0 rgba(26,20,16,0.08);
+}
+
+.sakura-deco {
+  display:flex; align-items:center; justify-content:center;
+  gap:0.8rem; margin:0.8rem 0 0.5rem;
+}
+.sakura-deco .line { height:1px; width:60px; background:linear-gradient(90deg, transparent, var(--gold)); opacity:0.5; }
+.sakura-deco .line.r { background:linear-gradient(90deg, var(--gold), transparent); }
+.sakura-deco .petal-icon { color:var(--sakura); font-size:1.1rem; animation: sway 3s ease-in-out infinite; }
+.sakura-deco .petal-icon:nth-child(3) { animation-delay:0.5s; }
+.sakura-deco .petal-icon:nth-child(5) { animation-delay:1s; }
+
+@keyframes sway {
+  0%,100% { transform:rotate(-10deg) scale(1); }
+  50% { transform:rotate(10deg) scale(1.1); }
+}
+
+.de-title {
+  font-family:'Noto Serif JP', serif;
+  font-size:0.85rem;
+  font-weight:400;
+  color:var(--gold);
+  letter-spacing:0.4em;
+  text-transform:uppercase;
+  display:block;
+  margin-top:0.3rem;
+  opacity:0.85;
+}
+
+/* Vertical decorative kanji strip */
+.side-kanji {
+  position:fixed;
+  top:50%;
+  transform:translateY(-50%);
+  font-family:'Shippori Mincho', serif;
+  font-size:1rem;
+  font-weight:700;
+  color:rgba(26,20,16,0.07);
+  letter-spacing:0.3em;
+  writing-mode:vertical-rl;
+  user-select:none;
+  pointer-events:none;
+}
+.side-kanji.left { left:0.8rem; }
+.side-kanji.right { right:0.8rem; }
+
+/* ── PROGRESS OVERVIEW ── */
+.progress-overview {
+  background: linear-gradient(135deg, var(--sumi) 0%, #2d2010 100%);
+  border-radius:20px;
+  padding:1.5rem 2rem;
+  margin:1.5rem 0;
+  display:flex; gap:2rem; align-items:center; flex-wrap:wrap;
+  position:relative; overflow:hidden;
+  box-shadow: 0 8px 40px rgba(26,20,16,0.2);
+}
+.progress-overview::before {
+  content:'進歩';
+  font-family:'Shippori Mincho',serif;
+  font-size:6rem; font-weight:800;
+  color:rgba(255,255,255,0.03);
+  position:absolute; right:1rem; top:50%; transform:translateY(-50%);
+  letter-spacing:0.1em;
+  user-select:none;
+}
+
+.progress-stat {
+  text-align:center; flex:1; min-width:80px;
+}
+.progress-stat .num {
+  font-family:'Shippori Mincho', serif;
+  font-size:2.2rem; font-weight:700;
+  color:var(--gold-light); display:block;
+}
+.progress-stat .lbl {
+  font-size:0.68rem; color:rgba(247,242,232,0.5);
+  letter-spacing:0.8px; text-transform:uppercase; margin-top:0.2rem;
+}
+.progress-bar-wrap {
+  flex:3; min-width:200px;
+}
+.progress-bar-label {
+  display:flex; justify-content:space-between;
+  font-size:0.75rem; color:rgba(247,242,232,0.5); margin-bottom:0.5rem;
+  letter-spacing:0.5px;
+}
+.progress-bar-outer {
+  background:rgba(255,255,255,0.1); border-radius:99px; height:6px; overflow:hidden;
+}
+.progress-bar-inner {
+  height:100%; background:linear-gradient(90deg, var(--red-jp), var(--gold-light));
+  border-radius:99px; transition:width 0.8s cubic-bezier(0.4,0,0.2,1);
+  position:relative;
+}
+.progress-bar-inner::after {
+  content:'';
+  position:absolute; right:0; top:50%; transform:translateY(-50%);
+  width:8px; height:8px; border-radius:50%;
+  background:var(--gold-light);
+  box-shadow:0 0 8px rgba(212,170,78,0.8);
+}
+
+/* ── CULTURE STRIP ── */
+.culture-strip {
+  background: white;
+  border-radius:16px;
+  padding:1.2rem 1.8rem;
+  margin:1.5rem 0;
+  display:flex; gap:1.2rem; align-items:center;
+  border:1px solid rgba(184,146,42,0.2);
+  box-shadow: 0 2px 20px var(--shadow-warm);
+  position:relative; overflow:hidden;
+}
+.culture-strip::before {
+  content:'文化';
+  font-family:'Shippori Mincho',serif;
+  font-size:4rem; font-weight:800;
+  color:rgba(26,20,16,0.03);
+  position:absolute; right:1rem; bottom:-0.5rem;
+  user-select:none;
+}
+.culture-icon { font-size:2rem; flex-shrink:0; }
+.culture-text h4 {
+  font-family:'Noto Serif JP', serif;
+  font-size:0.65rem; letter-spacing:0.4em; color:var(--gold);
+  text-transform:uppercase; margin-bottom:0.3rem;
+}
+.culture-text p { font-size:0.86rem; line-height:1.65; color:#555; }
+.culture-text em { color:var(--red-jp); font-style:normal; font-weight:600; }
+
+/* ── WEEK NAVIGATION ── */
+.weeks-nav {
+  display:flex; gap:0.5rem; flex-wrap:wrap;
+  margin:1.5rem 0 1rem;
+}
+
+.week-btn {
+  padding:0.45rem 1.1rem;
+  border-radius:50px;
+  border:1.5px solid rgba(26,20,16,0.12);
+  background:white;
+  font-family:'Noto Sans JP', sans-serif;
+  font-size:0.78rem; font-weight:600;
+  color:var(--ink); cursor:pointer;
+  transition:all 0.2s;
+  position:relative;
+  box-shadow: 0 1px 4px rgba(26,20,16,0.06);
+}
+.week-btn:hover { border-color:var(--gold); color:var(--red-jp); background:var(--gold-pale); }
+.week-btn.active {
+  background: linear-gradient(135deg, var(--sumi), #3d2e20);
+  color:var(--gold-light);
+  border-color:transparent;
+  box-shadow: 0 4px 16px rgba(26,20,16,0.25);
+}
+.week-btn.done::after {
+  content:'✓';
+  position:absolute; top:-4px; right:-4px;
+  background:var(--teal); color:white;
+  font-size:0.5rem; width:14px; height:14px;
+  border-radius:50%; display:flex; align-items:center; justify-content:center;
+  font-weight:700;
+}
+
+/* ── LESSON CARD ── */
+.lesson-card {
+  background:white;
+  border-radius:24px;
+  box-shadow:0 12px 60px rgba(26,20,16,0.12);
+  border:1px solid rgba(184,146,42,0.12);
+  overflow:hidden;
+  animation:fadeUp 0.4s ease;
+}
+
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(16px); }
+  to { opacity:1; transform:translateY(0); }
+}
+
+.lesson-header {
+  background: linear-gradient(135deg, var(--sumi) 0%, #3d2010 50%, #2d1810 100%);
+  padding:2rem 2.5rem;
+  color:var(--washi);
+  position:relative; overflow:hidden;
+}
+.lesson-header::before {
+  content:''; position:absolute;
+  top:-40px; right:-40px;
+  width:200px; height:200px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(184,146,42,0.15) 0%, transparent 70%);
+}
+.lesson-header::after {
+  content: attr(data-kanji);
+  font-family:'Shippori Mincho', serif;
+  font-size:6rem; font-weight:800; opacity:0.07;
+  color:white;
+  position:absolute; right:1.5rem; bottom:-0.5rem; line-height:1;
+}
+
+.lesson-week-label {
+  font-size:0.65rem; letter-spacing:0.5em;
+  color:var(--gold-light); text-transform:uppercase; margin-bottom:0.5rem;
+  opacity:0.8;
+}
+.lesson-title {
+  font-family:'Shippori Mincho', serif;
+  font-size:1.9rem; font-weight:700;
+  line-height:1.2;
+}
+.lesson-subtitle { font-size:0.82rem; opacity:0.6; margin-top:0.4rem; letter-spacing:0.02em; }
+
+/* ── TABS ── */
+.tabs {
+  display:flex; border-bottom:1px solid var(--washi3);
+  background:var(--washi);
+  overflow-x:auto;
+}
+.tabs::-webkit-scrollbar { height:2px; }
+.tabs::-webkit-scrollbar-track { background:transparent; }
+.tabs::-webkit-scrollbar-thumb { background:var(--gold); border-radius:2px; }
+
+.tab-btn {
+  padding:1rem 1.4rem;
+  border:none; background:none;
+  font-family:'Noto Sans JP', sans-serif;
+  font-size:0.8rem; font-weight:600;
+  color:#999; cursor:pointer;
+  border-bottom:2.5px solid transparent;
+  margin-bottom:-1px;
+  transition:all 0.2s;
+  white-space:nowrap;
+  letter-spacing:0.03em;
+}
+.tab-btn:hover { color:var(--sumi); }
+.tab-btn.active {
+  color:var(--red-jp);
+  border-bottom-color:var(--red-jp);
+  background:linear-gradient(180deg, transparent, rgba(192,57,43,0.03));
+}
+
+.tab-content { display:none; padding:2rem 2.5rem; }
+.tab-content.active { display:block; animation:fadeUp 0.3s ease; }
+
+/* ── VOCAB TAB ── */
+.vocab-header {
+  display:flex; align-items:center; justify-content:space-between;
+  margin-bottom:1.2rem; flex-wrap:wrap; gap:0.5rem;
+}
+.vocab-hint {
+  font-size:0.75rem; color:#999;
+  display:flex; align-items:center; gap:0.5rem;
+}
+.pitch-legend {
+  display:flex; align-items:center; gap:0.8rem;
+  font-size:0.68rem; color:#aaa;
+}
+.pitch-legend span { display:flex; align-items:center; gap:0.3rem; }
+
+.vocab-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(190px, 1fr));
+  gap:0.8rem;
+}
+.vocab-card {
+  background:var(--washi);
+  border-radius:14px;
+  padding:1.1rem;
+  border:1.5px solid rgba(26,20,16,0.07);
+  cursor:pointer;
+  transition:all 0.25s;
+  position:relative;
+  overflow:hidden;
+  user-select:none;
+}
+.vocab-card::before {
+  content:'';
+  position:absolute; top:0; left:0; bottom:0;
+  width:3px;
+  background:var(--gold);
+  border-radius:3px 0 0 3px;
+  opacity:0;
+  transition:opacity 0.2s;
+}
+.vocab-card:hover {
+  border-color:var(--gold-light);
+  transform:translateY(-3px);
+  box-shadow:0 8px 24px rgba(184,146,42,0.12);
+  background:white;
+}
+.vocab-card:hover::before { opacity:1; }
+.vocab-card.flipped {
+  background:var(--gold-pale);
+  border-color:var(--gold);
+}
+.vocab-jp {
+  font-family:'Shippori Mincho', serif;
+  font-size:1.6rem; font-weight:700;
+  color:var(--sumi); display:block;
+  margin-bottom:0.15rem;
+  line-height:1.2;
+}
+.vocab-rom {
+  font-size:0.73rem; color:var(--gold);
+  font-style:italic; display:block; margin-bottom:0.3rem;
+  font-family:'Noto Serif JP', serif;
+}
+.vocab-de {
+  font-size:0.85rem; color:#555; line-height:1.4;
+}
+.vocab-tag {
+  position:absolute; top:0.6rem; right:0.6rem;
+  font-size:0.58rem; padding:0.15rem 0.55rem;
+  border-radius:20px; background:rgba(184,146,42,0.1);
+  color:var(--gold); font-weight:700; letter-spacing:0.5px;
+  text-transform:uppercase;
+}
+
+/* ── PITCH DIAGRAM ── */
+.pitch-wrap {
+  margin-top:0.6rem;
+  display:flex; flex-direction:column; align-items:flex-start; gap:2px;
+}
+.pitch-syllables {
+  display:flex; gap:0px; align-items:flex-end;
+}
+.pitch-syl {
+  display:flex; flex-direction:column; align-items:center;
+  min-width:28px; position:relative;
+}
+.pitch-dot {
+  width:8px; height:8px; border-radius:50%;
+  margin-bottom:2px;
+  position:relative; z-index:2;
+  transition:transform 0.2s;
+}
+.pitch-syl.high .pitch-dot { background:var(--red-jp); }
+.pitch-syl.low .pitch-dot { background:#ccc; }
+.pitch-kana-rom {
+  font-size:0.58rem; color:#aaa; margin-top:2px;
+  font-family:'Noto Sans JP', sans-serif;
+}
+.pitch-label {
+  font-size:0.58rem; color:#bbb; letter-spacing:0.5px;
+  margin-top:0.2rem;
+}
+
+/* ── SPEAK BUTTON ── */
+.speak-btn {
+  background:none; border:1px solid rgba(184,146,42,0.3);
+  border-radius:50px; padding:0.2rem 0.7rem;
+  color:var(--gold); font-size:0.7rem; cursor:pointer;
+  transition:all 0.15s; margin-top:0.5rem; display:inline-flex;
+  align-items:center; gap:0.3rem;
+  font-family:'Noto Sans JP', sans-serif;
+}
+.speak-btn:hover { background:var(--gold-pale); border-color:var(--gold); }
+.speak-btn.speaking { color:var(--red-jp); border-color:var(--red-jp); animation:pulse 0.6s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
+
+/* ── GRAMMAR TAB ── */
+.grammar-block { margin-bottom:2.5rem; }
+.grammar-block:last-child { margin-bottom:0; }
+.grammar-block h3 {
+  font-family:'Shippori Mincho', serif;
+  font-size:1.15rem; font-weight:700;
+  color:var(--sumi); margin-bottom:0.8rem;
+  display:flex; align-items:center; gap:0.6rem;
+}
+.grammar-block h3::before {
+  content:''; width:4px; height:1.1em;
+  background:linear-gradient(180deg, var(--red-jp), var(--gold));
+  border-radius:2px; display:inline-block; flex-shrink:0;
+}
+.grammar-text { font-size:0.9rem; line-height:1.85; color:#555; margin-bottom:1rem; }
+
+.pattern-box {
+  background: linear-gradient(135deg, var(--sumi) 0%, #3a2515 100%);
+  color:var(--washi);
+  border-radius:14px;
+  padding:1.4rem 1.8rem;
+  margin:1rem 0;
+  font-family:'Shippori Mincho', serif;
+  text-align:center;
+  position:relative; overflow:hidden;
+}
+.pattern-box::before {
+  content:'';
+  position:absolute; top:0; left:0; right:0; height:2px;
+  background:linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.pattern-box .jp { font-size:1.4rem; color:var(--gold-light); letter-spacing:0.05em; }
+.pattern-box .rom { font-size:0.8rem; opacity:0.6; margin-top:0.35rem; font-family:'Noto Serif JP',serif; }
+.pattern-box .de { font-size:0.87rem; opacity:0.8; margin-top:0.25rem; font-family:'Noto Sans JP',sans-serif; }
+
+.examples-list { list-style:none; }
+.examples-list li {
+  padding:0.65rem 0;
+  border-bottom:1px dashed rgba(26,20,16,0.08);
+  font-size:0.9rem; line-height:1.6;
+}
+.examples-list li:last-child { border-bottom:none; }
+.ex-jp { font-family:'Shippori Mincho', serif; font-weight:600; color:var(--sumi); font-size:1.05rem; }
+.ex-rom { color:var(--gold); font-size:0.78rem; font-style:italic; }
+.ex-de { color:#777; font-size:0.84rem; }
+
+/* ── WRITING / HIRAGANA TAB ── */
+.kana-intro {
+  background:var(--sakura-pale);
+  border:1px solid rgba(212,130,154,0.2);
+  border-radius:12px; padding:1rem 1.2rem;
+  font-size:0.84rem; line-height:1.7; color:#555;
+  margin-bottom:1.5rem;
+}
+
+.hiragana-grid {
+  display:grid;
+  grid-template-columns:repeat(5, 1fr);
+  gap:0.5rem;
+  margin-bottom:1rem;
+}
+.kana-card {
+  background:var(--washi);
+  border:1.5px solid rgba(26,20,16,0.08);
+  border-radius:12px;
+  padding:0.9rem 0.3rem;
+  text-align:center;
+  cursor:pointer;
+  transition:all 0.2s;
+  position:relative;
+}
+.kana-card:hover { border-color:var(--sakura); background:var(--sakura-pale); transform:scale(1.05); }
+.kana-card.learned { border-color:var(--teal); background:var(--teal-light); }
+.kana-card.learned::after {
+  content:'✓';
+  position:absolute; top:2px; right:4px;
+  font-size:0.55rem; color:var(--teal); font-weight:700;
+}
+.kana-char {
+  font-family:'Shippori Mincho', serif;
+  font-size:1.7rem; font-weight:700; display:block; color:var(--sumi);
+}
+.kana-rom { font-size:0.65rem; color:#999; margin-top:0.15rem; font-family:'Noto Serif JP',serif; }
+
+.kana-progress-text {
+  font-size:0.8rem; color:#888; margin-top:0.5rem;
+  display:flex; align-items:center; gap:0.5rem;
+}
+.kana-progress-bar {
+  flex:1; height:4px; background:var(--washi2); border-radius:99px; overflow:hidden;
+}
+.kana-progress-fill {
+  height:100%; background:linear-gradient(90deg, var(--teal), var(--gold-light));
+  border-radius:99px; transition:width 0.3s;
+}
+
+/* ── EXERCISES TAB ── */
+.ex-type-selector {
+  display:flex; gap:0.5rem; margin-bottom:1.5rem; flex-wrap:wrap;
+}
+.ex-type-btn {
+  padding:0.4rem 1rem;
+  border-radius:50px;
+  border:1.5px solid rgba(26,20,16,0.12);
+  background:white;
+  font-family:'Noto Sans JP', sans-serif;
+  font-size:0.72rem; font-weight:600;
+  color:#888; cursor:pointer;
+  transition:all 0.2s;
+}
+.ex-type-btn.active {
+  background:var(--sumi); color:var(--gold-light); border-color:transparent;
+}
+
+.ex-card {
+  background:var(--washi);
+  border-radius:16px;
+  padding:1.8rem;
+  margin-bottom:1rem;
+  border:1px solid rgba(26,20,16,0.07);
+  animation:fadeUp 0.3s ease;
+}
+.ex-type-badge {
+  display:inline-block;
+  font-size:0.6rem; font-weight:700; letter-spacing:1.5px;
+  text-transform:uppercase; padding:0.2rem 0.8rem;
+  border-radius:20px; margin-bottom:1rem;
+}
+.badge-mc { background:rgba(26,20,16,0.07); color:var(--sumi); }
+.badge-fill { background:rgba(192,57,43,0.1); color:var(--red-jp); }
+.badge-match { background:rgba(46,125,110,0.1); color:var(--teal); }
+.badge-order { background:rgba(30,58,95,0.1); color:var(--indigo); }
+.badge-kana { background:rgba(212,130,154,0.15); color:var(--sakura); }
+
+.ex-question {
+  font-family:'Shippori Mincho', serif;
+  font-size:1.25rem; line-height:1.6; margin-bottom:1.3rem;
+  color:var(--sumi);
+}
+.ex-blank {
+  display:inline-block; min-width:80px;
+  border-bottom:2.5px solid var(--sumi);
+  text-align:center; padding:0 0.4rem;
+  color:#aaa; font-style:italic;
+}
+
+.mc-choices { display:grid; grid-template-columns:1fr 1fr; gap:0.6rem; }
+.mc-btn {
+  padding:0.7rem 1rem;
+  border:1.5px solid rgba(26,20,16,0.12);
+  border-radius:12px; background:white;
+  font-family:'Noto Sans JP', sans-serif;
+  font-size:0.92rem; font-weight:500;
+  color:var(--sumi); cursor:pointer; transition:all 0.15s;
+  text-align:center; line-height:1.4;
+}
+.mc-btn:hover:not(:disabled) { border-color:var(--gold); background:var(--gold-pale); }
+.mc-btn.correct { background:#d4f5e5; border-color:var(--teal); color:var(--teal); }
+.mc-btn.wrong { background:#fde8e8; border-color:var(--red-jp); color:var(--red-jp); }
+.mc-btn:disabled { cursor:default; }
+
+.fill-row { display:flex; gap:0.6rem; }
+.fill-in {
+  flex:1; padding:0.75rem 1rem;
+  border:1.5px solid rgba(26,20,16,0.15); border-radius:12px;
+  font-family:'Noto Sans JP', sans-serif; font-size:1rem;
+  color:var(--sumi); background:white; outline:none;
+  transition:border-color 0.2s;
+}
+.fill-in:focus { border-color:var(--gold); box-shadow:0 0 0 3px rgba(184,146,42,0.1); }
+.fill-in.correct { border-color:var(--teal); background:#d4f5e5; color:var(--teal); }
+.fill-in.wrong { border-color:var(--red-jp); background:#fde8e8; color:var(--red-jp); }
+
+.check-btn {
+  padding:0.75rem 1.4rem; background:var(--sumi); color:var(--gold-light);
+  border:none; border-radius:12px;
+  font-family:'Noto Sans JP', sans-serif; font-size:0.88rem; font-weight:700;
+  cursor:pointer; transition:all 0.15s;
+  white-space:nowrap;
+}
+.check-btn:hover { background:var(--ink); transform:translateY(-1px); }
+.check-btn:disabled { background:#ccc; color:#999; cursor:default; transform:none; }
+
+/* Matching exercise */
+.match-area { display:flex; gap:1.5rem; }
+.match-col { flex:1; display:flex; flex-direction:column; gap:0.5rem; }
+.match-col-label { font-size:0.65rem; color:#aaa; letter-spacing:0.5px; text-transform:uppercase; margin-bottom:0.3rem; }
+.match-item {
+  padding:0.6rem 1rem;
+  border:1.5px solid rgba(26,20,16,0.1);
+  border-radius:10px; background:white;
+  font-family:'Noto Sans JP', sans-serif;
+  font-size:0.9rem; cursor:pointer;
+  transition:all 0.15s; text-align:center;
+  line-height:1.4;
+}
+.match-item.selected { border-color:var(--gold); background:var(--gold-pale); color:var(--sumi); font-weight:600; }
+.match-item.matched { border-color:var(--teal); background:#d4f5e5; color:var(--teal); cursor:default; }
+.match-item.wrong-match { border-color:var(--red-jp); background:#fde8e8; animation:shake 0.3s; }
+.match-item:disabled { cursor:default; }
+@keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-4px)} 75%{transform:translateX(4px)} }
+
+/* Word order exercise */
+.order-tokens { display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem; min-height:50px; }
+.order-token {
+  padding:0.5rem 0.9rem;
+  border:1.5px solid var(--gold); border-radius:8px;
+  background:var(--gold-pale);
+  font-family:'Shippori Mincho', serif; font-size:1rem;
+  cursor:pointer; transition:all 0.15s; user-select:none;
+}
+.order-token:hover { background:var(--gold); color:white; }
+.order-token.placed { opacity:0.3; pointer-events:none; }
+.order-target {
+  min-height:52px;
+  border:2px dashed rgba(26,20,16,0.15);
+  border-radius:12px; padding:0.5rem 1rem;
+  display:flex; flex-wrap:wrap; gap:0.5rem;
+  align-items:center;
+  background:white;
+}
+.placed-token {
+  padding:0.5rem 0.9rem;
+  border:1.5px solid var(--sumi); border-radius:8px;
+  background:var(--sumi); color:var(--gold-light);
+  font-family:'Shippori Mincho', serif; font-size:1rem;
+  cursor:pointer; transition:all 0.15s; user-select:none;
+}
+.placed-token:hover { background:var(--ink); }
+
+.ex-feedback {
+  margin-top:1rem; padding:0.7rem 1.1rem;
+  border-radius:10px; font-size:0.9rem; font-weight:600;
+  display:none;
+}
+.ex-feedback.show { display:block; animation:fadeUp 0.2s; }
+.ex-feedback.ok { background:#d4f5e5; color:var(--teal); border-left:3px solid var(--teal); }
+.ex-feedback.nok { background:#fde8e8; color:var(--red-jp); border-left:3px solid var(--red-jp); }
+
+.ex-nav { display:flex; justify-content:space-between; align-items:center; margin-top:1.5rem; }
+.ex-progress { font-size:0.8rem; color:#aaa; }
+.next-ex-btn {
+  padding:0.65rem 2rem; background:linear-gradient(135deg, var(--sumi), #3d2010);
+  color:var(--gold-light);
+  border:none; border-radius:50px;
+  font-family:'Noto Sans JP', sans-serif; font-size:0.88rem; font-weight:700;
+  cursor:pointer; display:none; transition:all 0.2s;
+  box-shadow:0 4px 16px rgba(26,20,16,0.2);
+}
+.next-ex-btn:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(26,20,16,0.3); }
+.next-ex-btn.show { display:inline-block; }
+
+/* ── SCOREBOARD ── */
+.ex-scoreboard {
+  display:flex; gap:1.5rem; justify-content:center;
+  background:linear-gradient(135deg, var(--sumi), #2d1810);
+  border-radius:14px;
+  padding:1rem 1.5rem; margin-bottom:1.5rem; color:white;
+  position:relative; overflow:hidden;
+}
+.ex-scoreboard::after {
+  content:'点数';
+  font-family:'Shippori Mincho',serif;
+  font-size:3rem; font-weight:800;
+  color:rgba(255,255,255,0.03);
+  position:absolute; right:0.5rem; bottom:-0.3rem;
+}
+.ex-score-item { text-align:center; }
+.ex-score-item .n {
+  font-family:'Shippori Mincho', serif; font-size:1.8rem; font-weight:700; display:block;
+}
+.ex-score-item .l { font-size:0.65rem; opacity:0.5; letter-spacing:1px; text-transform:uppercase; }
+.sc-r .n { color:#7dffb3; }
+.sc-f .n { color:#ff9080; }
+.sc-g .n { color:var(--gold-light); }
+
+/* ── RESULT ── */
+.result-screen {
+  text-align:center; padding:3rem 2rem; display:none;
+}
+.result-screen.show { display:block; animation:fadeUp 0.5s ease; }
+.result-emoji { font-size:4rem; margin-bottom:0.8rem; }
+.result-title {
+  font-family:'Shippori Mincho', serif; font-size:2.2rem; font-weight:800;
+  color:var(--sumi); margin-bottom:0.3rem;
+}
+.result-jp { color:var(--gold); font-size:1.1rem; margin-bottom:1.5rem;
+  font-family:'Noto Serif JP', serif;
+}
+.result-score {
+  font-family:'Shippori Mincho', serif; font-size:3.5rem; font-weight:800;
+  color:var(--sumi);
+}
+.result-score span { color:var(--red-jp); }
+.restart-btn {
+  margin-top:1.5rem; padding:0.9rem 2.5rem;
+  background:linear-gradient(135deg, var(--sumi), #3d2010); color:var(--gold-light);
+  border:none; border-radius:50px;
+  font-family:'Noto Sans JP', sans-serif; font-size:0.95rem; font-weight:700;
+  cursor:pointer; transition:all 0.2s;
+  box-shadow:0 6px 24px rgba(26,20,16,0.25);
+}
+.restart-btn:hover { transform:translateY(-2px); box-shadow:0 10px 32px rgba(26,20,16,0.35); }
+
+/* ── CULTURE FACTS ── */
+.culture-fact {
+  background:linear-gradient(135deg, var(--sumi) 0%, #2d2010 100%);
+  border-radius:18px; padding:1.6rem 2rem;
+  color:var(--washi);
+  position:relative; overflow:hidden;
+  margin-bottom:1rem;
+}
+.culture-fact::before {
+  content:'文化'; font-family:'Shippori Mincho', serif;
+  font-size:5rem; font-weight:800; color:white; opacity:0.04;
+  position:absolute; right:1rem; bottom:-0.5rem; line-height:1;
+  user-select:none;
+}
+.culture-fact h4 {
+  font-family:'Noto Serif JP', serif; color:var(--gold-light);
+  font-size:0.68rem; letter-spacing:0.5em; text-transform:uppercase;
+  margin-bottom:0.7rem;
+}
+.culture-fact p { font-size:0.9rem; line-height:1.8; opacity:0.88; }
+.culture-fact em { color:var(--sakura); font-style:normal; font-weight:600; }
+
+/* ── KANA QUIZ (in exercise tab) ── */
+.kana-quiz-card {
+  text-align:center;
+}
+.kana-big {
+  font-family:'Shippori Mincho', serif;
+  font-size:5rem; font-weight:800;
+  color:var(--sumi);
+  display:block;
+  margin:0.5rem 0 1.5rem;
+  line-height:1;
+}
+
+/* ── FOOTER ── */
+footer {
+  text-align:center;
+  padding:2rem 0;
+  font-size:0.68rem;
+  color:#bbb;
+  letter-spacing:0.3em;
+  text-transform:uppercase;
+  font-family:'Noto Serif JP', serif;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width:640px) {
+  .jp-title { font-size:3.5rem; }
+  .vocab-grid { grid-template-columns:1fr 1fr; }
+  .hiragana-grid { grid-template-columns:repeat(5,1fr); gap:0.3rem; }
+  .mc-choices { grid-template-columns:1fr; }
+  .tab-btn { padding:0.8rem 1rem; font-size:0.75rem; }
+  .progress-overview { flex-direction:column; gap:1rem; }
+  .tab-content { padding:1.5rem; }
+  .lesson-header { padding:1.5rem; }
+  .match-area { flex-direction:column; }
+  .side-kanji { display:none; }
+}
+</style>
+</head>
+<body>
+
+<!-- Falling petals -->
+<div class="petal" style="left:10%;animation-duration:8s;animation-delay:0s;width:10px;height:12px;"></div>
+<div class="petal" style="left:25%;animation-duration:10s;animation-delay:2s;width:8px;height:10px;"></div>
+<div class="petal" style="left:45%;animation-duration:7s;animation-delay:4s;width:12px;height:14px;"></div>
+<div class="petal" style="left:65%;animation-duration:9s;animation-delay:1s;width:9px;height:11px;"></div>
+<div class="petal" style="left:80%;animation-duration:11s;animation-delay:3s;width:7px;height:9px;"></div>
+<div class="petal" style="left:90%;animation-duration:8s;animation-delay:6s;width:11px;height:13px;"></div>
+
+<!-- Vertical kanji decoration -->
+<div class="side-kanji left">日本語・学習・文化・言葉・心</div>
+<div class="side-kanji right">勉強・練習・漢字・仮名・読書</div>
+
+<div class="container">
+
+<header>
+  <div class="header-kanji-bg">日本語</div>
+  <div class="jp-title">日本語</div>
+  <div class="sakura-deco">
+    <div class="line"></div>
+    <span class="petal-icon">✿</span>
+    <span class="petal-icon">✿</span>
+    <span class="petal-icon">✿</span>
+    <div class="line r"></div>
+  </div>
+  <span class="de-title">Japanisch · A1 · Lernplattform</span>
+</header>
+
+<!-- Progress -->
+<div class="progress-overview">
+  <div class="progress-stat">
+    <span class="num" id="stat-weeks">0</span>
+    <div class="lbl">Wochen</div>
+  </div>
+  <div class="progress-stat">
+    <span class="num" id="stat-vocab">0</span>
+    <div class="lbl">Wörter</div>
+  </div>
+  <div class="progress-stat">
+    <span class="num" id="stat-kana">0</span>
+    <div class="lbl">Kana</div>
+  </div>
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-label">
+      <span style="color:rgba(247,242,232,0.5);">Gesamtfortschritt A1</span>
+      <span id="pct-label" style="color:var(--gold-light);">0%</span>
+    </div>
+    <div class="progress-bar-outer">
+      <div class="progress-bar-inner" id="main-progress-bar" style="width:0%"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Culture strip -->
+<div class="culture-strip" id="culture-strip">
+  <div class="culture-icon" id="cult-icon">⛩️</div>
+  <div class="culture-text">
+    <h4>Kulturwissen des Tages</h4>
+    <p id="cult-text">Wird geladen …</p>
+  </div>
+</div>
+
+<!-- Week navigation -->
+<div class="weeks-nav" id="weeks-nav"></div>
+
+<!-- Lesson card -->
+<div class="lesson-card" id="lesson-card"></div>
+
+</div>
+
+<footer>日本語学習 · A1 Kurs · Viel Erfolg! がんばって！</footer>
+
+<script>
+// ═══════════════════════════════════════════
+//  DATA
+// ═══════════════════════════════════════════
+const CULTURE = [
+  { icon:'⛩️', text:'<em>Torii</em> (鳥居) sind die roten Tore vor Shinto-Schreinen. Sie markieren den Übergang von der gewöhnlichen Welt in heiligen Raum. Das bekannteste steht auf der Insel Miyajima.' },
+  { icon:'🌸', text:'<em>Hanami</em> (花見) bedeutet „Blüten schauen". Jedes Frühjahr treffen sich Japaner unter Kirschblütenbäumen zum Picknick. Die Vergänglichkeit der Blüten erinnert an die Philosophie <em>mono no aware</em>.' },
+  { icon:'🍵', text:'Die <em>Teezeremonie</em> (茶道 · sadō) ist eine hochentwickelte Kunst. Jede Bewegung hat Bedeutung: das Falten des Tuches, das Schlagen des Matcha, das Drehen der Schale.' },
+  { icon:'🏔️', text:'Der <em>Fujisan</em> (富士山) ist mit 3.776 m der höchste Berg Japans. Er gilt als heiliger Berg und ist ein Symbol für Stärke und Schönheit. Über 300.000 Menschen besteigen ihn jährlich.' },
+  { icon:'🎋', text:'<em>Tanabata</em> (七夕) ist das Sternenfest am 7. Juli. Wünsche werden auf bunte Zettel geschrieben und an Bambus gehängt. Es erzählt von zwei Sternen die sich nur einmal im Jahr treffen dürfen.' },
+  { icon:'🎎', text:'<em>Origami</em> (折り紙) bedeutet wörtlich „gefaltetes Papier". Der Kranich (<em>tsuru</em>) ist das bekannteste Motiv — 1.000 gefaltete Kraniche sollen einen Wunsch erfüllen.' },
+  { icon:'🍱', text:'Die <em>Bento-Box</em> (弁当) ist eine japanische Lunchbox-Tradition. In Schulen bereiten Eltern aufwändig gestaltete Bento mit Reis, Gemüse und Protein vor. Manchmal sind es kleine Kunstwerke.' },
+  { icon:'🚅', text:'Der <em>Shinkansen</em> (新幹線 · Schnellzug) hat eine durchschnittliche Verspätung von unter einer Minute. Er ist ein Symbol für japanische Präzision und wurde erstmals 1964 für die Olympischen Spiele eingeführt.' },
+];
+
+const WEEKS = [
+  {
+    id:1, label:'Woche 1–2', title:'Hiragana & Aussprache',
+    subtitle:'Die 46 Grundzeichen · Vokale · Rhythmus',
+    kanji:'あいう',
+    culture:{ icon:'✍️', text:'Japanisch wird in drei Schriften geschrieben: <em>Hiragana</em>, <em>Katakana</em> und <em>Kanji</em>. Hiragana ist die erste die man lernt — es ist die Basis für alles. Jedes Zeichen steht für eine Silbe.' },
+    vocab:[
+      {jp:'はい', rom:'hai', de:'Ja', tag:'Basics', pitch:['L','H']},
+      {jp:'いいえ', rom:'i-i-e', de:'Nein', tag:'Basics', pitch:['H','L','L']},
+      {jp:'ありがとう', rom:'a-ri-ga-to-u', de:'Danke', tag:'Basics', pitch:['L','H','H','H','L']},
+      {jp:'すみません', rom:'su-mi-ma-se-n', de:'Entschuldigung', tag:'Basics', pitch:['L','H','H','H','H']},
+      {jp:'おはよう', rom:'o-ha-yo-u', de:'Guten Morgen', tag:'Grüßen', pitch:['L','H','H','H']},
+      {jp:'こんにちは', rom:'ko-n-ni-chi-wa', de:'Guten Tag', tag:'Grüßen', pitch:['L','H','H','H','H']},
+      {jp:'こんばんは', rom:'ko-n-ba-n-wa', de:'Guten Abend', tag:'Grüßen', pitch:['L','H','H','H','H']},
+      {jp:'さようなら', rom:'sa-yo-u-na-ra', de:'Auf Wiedersehen', tag:'Grüßen', pitch:['L','H','H','L','L']},
+    ],
+    hiragana:[
+      {c:'あ',r:'a'},{c:'い',r:'i'},{c:'う',r:'u'},{c:'え',r:'e'},{c:'お',r:'o'},
+      {c:'か',r:'ka'},{c:'き',r:'ki'},{c:'く',r:'ku'},{c:'け',r:'ke'},{c:'こ',r:'ko'},
+      {c:'さ',r:'sa'},{c:'し',r:'shi'},{c:'す',r:'su'},{c:'せ',r:'se'},{c:'そ',r:'so'},
+      {c:'た',r:'ta'},{c:'ち',r:'chi'},{c:'つ',r:'tsu'},{c:'て',r:'te'},{c:'と',r:'to'},
+      {c:'な',r:'na'},{c:'に',r:'ni'},{c:'ぬ',r:'nu'},{c:'ね',r:'ne'},{c:'の',r:'no'},
+    ],
+    grammar:[
+      {
+        title:'Die 5 Vokale',
+        text:'Japanische Vokale werden immer gleich ausgesprochen — kein stummes E wie im Deutschen. Kurz und klar: a · i · u · e · o. Jeder Vokal hat exakt eine Aussprache.',
+        pattern:{jp:'あ　い　う　え　お', rom:'a   i   u   e   o', de:'wie in: Mama · Igel · Uhu · Esel · Oma'},
+        examples:[
+          {jp:'あ — wie in Mama', rom:'a', de:'kurzer, klarer Vokal'},
+          {jp:'い — kurzes i wie in „Igel"', rom:'i', de:''},
+          {jp:'う — kurzes u, kaum gerundet', rom:'u', de:'anders als im Deutschen!'},
+          {jp:'え — wie in „Esel"', rom:'e', de:''},
+          {jp:'お — wie in „Oma"', rom:'o', de:''},
+        ]
+      },
+      {
+        title:'Silbenstruktur',
+        text:'Japanisch ist eine Mora-Sprache (モーラ). Jede Hiragana-Silbe hat dieselbe Zeitdauer. Das gibt der Sprache ihren charakteristischen, gleichmäßigen Rhythmus.',
+        pattern:{jp:'か·き·く·け·こ', rom:'ka · ki · ku · ke · ko', de:'jede Silbe gleich lang'},
+        examples:[
+          {jp:'ありがとう', rom:'a-ri-ga-to-u', de:'Danke — 5 gleichlange Silben'},
+          {jp:'こんにちは', rom:'ko-n-ni-chi-wa', de:'Guten Tag — 5 Silben'},
+          {jp:'さようなら', rom:'sa-yo-u-na-ra', de:'Auf Wiedersehen — 5 Silben'},
+        ]
+      }
+    ],
+    exercises:[
+      // Multiple Choice
+      {type:'mc', q:'Was bedeutet „ありがとう" (arigatou)?', choices:['Danke','Entschuldigung','Guten Tag','Auf Wiedersehen'], ans:'Danke'},
+      {type:'mc', q:'Wie sagt man „Guten Morgen" auf Japanisch?', choices:['こんにちは','おはよう','こんばんは','さようなら'], ans:'おはよう'},
+      {type:'mc', q:'Was bedeutet „すみません" (sumimasen)?', choices:['Danke','Ja','Entschuldigung','Nein'], ans:'Entschuldigung'},
+      {type:'mc', q:'Welche Begrüßung passt zum Abend?', choices:['おはよう','こんにちは','こんばんは','さようなら'], ans:'こんばんは'},
+      {type:'mc', q:'Wie sagt man „Nein" auf Japanisch?', choices:['はい','いいえ','すみません','ありがとう'], ans:'いいえ'},
+      {type:'mc', q:'Was bedeutet „こんにちは"?', choices:['Guten Morgen','Guten Tag','Guten Abend','Auf Wiedersehen'], ans:'Guten Tag'},
+      // Fill-in
+      {type:'fill', q:'„Ja" auf Japanisch (Romaji): ___', ans:'hai'},
+      {type:'fill', q:'„Auf Wiedersehen" auf Japanisch beginnt mit „sa…": ___', ans:'sayounara'},
+      {type:'fill', q:'„Danke" auf Japanisch (Romaji): ___', ans:'arigatou'},
+      {type:'fill', q:'„Guten Tag" auf Japanisch (Romaji): ___', ans:'konnichiwa'},
+      // Matching
+      {type:'match', q:'Verbinde die Begrüßungen mit ihrer Bedeutung:', pairs:[
+        {jp:'おはよう', de:'Guten Morgen'},
+        {jp:'こんにちは', de:'Guten Tag'},
+        {jp:'こんばんは', de:'Guten Abend'},
+        {jp:'さようなら', de:'Auf Wiedersehen'},
+      ]},
+      {type:'match', q:'Verbinde die Ausdrücke:', pairs:[
+        {jp:'はい', de:'Ja'},
+        {jp:'いいえ', de:'Nein'},
+        {jp:'ありがとう', de:'Danke'},
+        {jp:'すみません', de:'Entschuldigung'},
+      ]},
+      // Kana recognition
+      {type:'kana', q:'Welche Romaji-Schreibung gehört zu diesem Zeichen?', kana:'あ', choices:['a','i','u','ka'], ans:'a'},
+      {type:'kana', q:'Welches Zeichen ist „ka"?', kana:null, choices:['か','き','く','こ'], ans:'か', prompt:'ka'},
+      {type:'kana', q:'Welche Romaji-Schreibung gehört zu diesem Zeichen?', kana:'さ', choices:['sa','shi','su','se'], ans:'sa'},
+      {type:'kana', q:'Welche Romaji-Schreibung gehört zu diesem Zeichen?', kana:'ち', choices:['ta','chi','tsu','te'], ans:'chi'},
+    ]
+  },
+  {
+    id:2, label:'Woche 3', title:'Aussprache & Romaji',
+    subtitle:'Lautregeln · erste Sätze · Zahlen 1–10',
+    kanji:'数字',
+    culture:{ icon:'🔢', text:'Japanisch hat zwei Zahlensysteme: das einheimische japanische (<em>hitotsu, futatsu…</em>) und das sino-japanische (<em>ichi, ni, san…</em>). Im Alltag und beim Zählen wird meist das sino-japanische verwendet.' },
+    vocab:[
+      {jp:'いち', rom:'i-chi', de:'1 (eins)', tag:'Zahlen', pitch:['H','L']},
+      {jp:'に', rom:'ni', de:'2 (zwei)', tag:'Zahlen', pitch:['L']},
+      {jp:'さん', rom:'sa-n', de:'3 (drei)', tag:'Zahlen', pitch:['L','H']},
+      {jp:'し／よん', rom:'shi / yo-n', de:'4 (vier)', tag:'Zahlen', pitch:['H','L','L']},
+      {jp:'ご', rom:'go', de:'5 (fünf)', tag:'Zahlen', pitch:['L']},
+      {jp:'ろく', rom:'ro-ku', de:'6 (sechs)', tag:'Zahlen', pitch:['H','L']},
+      {jp:'なな／しち', rom:'na-na / shi-chi', de:'7 (sieben)', tag:'Zahlen', pitch:['L','H']},
+      {jp:'はち', rom:'ha-chi', de:'8 (acht)', tag:'Zahlen', pitch:['L','H']},
+      {jp:'きゅう／く', rom:'kyuu / ku', de:'9 (neun)', tag:'Zahlen', pitch:['H','L']},
+      {jp:'じゅう', rom:'juu', de:'10 (zehn)', tag:'Zahlen', pitch:['L','H']},
+    ],
+    hiragana:[
+      {c:'は',r:'ha'},{c:'ひ',r:'hi'},{c:'ふ',r:'fu'},{c:'へ',r:'he'},{c:'ほ',r:'ho'},
+      {c:'ま',r:'ma'},{c:'み',r:'mi'},{c:'む',r:'mu'},{c:'め',r:'me'},{c:'も',r:'mo'},
+      {c:'や',r:'ya'},{c:'　',r:''},{c:'ゆ',r:'yu'},{c:'　',r:''},{c:'よ',r:'yo'},
+      {c:'ら',r:'ra'},{c:'り',r:'ri'},{c:'る',r:'ru'},{c:'れ',r:'re'},{c:'ろ',r:'ro'},
+      {c:'わ',r:'wa'},{c:'　',r:''},{c:'　',r:''},{c:'　',r:''},{c:'を',r:'wo'},
+    ],
+    grammar:[
+      {
+        title:'X は Y です (X wa Y desu)',
+        text:'Das ist der wichtigste Satz im Japanischen. „wa" (は) markiert das Thema, „desu" (です) ist die höfliche Form von „ist/bin/sind". Wichtig: Das Verb steht IMMER am Ende!',
+        pattern:{jp:'X は Y です', rom:'X wa Y desu', de:'X ist Y'},
+        examples:[
+          {jp:'わたしはマリアです。', rom:'Watashi wa Maria desu.', de:'Ich bin Maria.'},
+          {jp:'これはほんです。', rom:'Kore wa hon desu.', de:'Das ist ein Buch.'},
+          {jp:'これはいちです。', rom:'Kore wa ichi desu.', de:'Das ist eine Eins.'},
+          {jp:'さんはさんです。', rom:'San wa san desu.', de:'Drei ist drei.'},
+        ]
+      }
+    ],
+    exercises:[
+      {type:'mc', q:'Wie lautet „3" auf Japanisch?', choices:['ni','san','ichi','yon'], ans:'san'},
+      {type:'mc', q:'Was bedeutet „これはほんです"?', choices:['Das ist ein Buch','Das bin ich','Das ist schön','Das ist neu'], ans:'Das ist ein Buch'},
+      {type:'mc', q:'Wo steht das Verb „desu" im japanischen Satz?', choices:['Am Anfang','In der Mitte','Am Ende','Überall'], ans:'Am Ende'},
+      {type:'mc', q:'Was ist „6" auf Japanisch?', choices:['ichi','go','roku','nana'], ans:'roku'},
+      {type:'mc', q:'Welche Partikel markiert das Thema im Satz?', choices:['を (wo)','に (ni)','は (wa)','が (ga)'], ans:'は (wa)'},
+      {type:'mc', q:'Wie viel ist „はち" (hachi)?', choices:['6','7','8','9'], ans:'8'},
+      {type:'fill', q:'„10" auf Japanisch (Romaji): ___', ans:'juu'},
+      {type:'fill', q:'„8" auf Japanisch (Romaji): ___', ans:'hachi'},
+      {type:'fill', q:'„5" auf Japanisch (Romaji): ___', ans:'go'},
+      {type:'fill', q:'Die Thema-Partikel auf Japanisch (Romaji): ___', ans:'wa'},
+      {type:'match', q:'Verbinde Zahlen mit ihrer Bedeutung:', pairs:[
+        {jp:'いち', de:'1'},
+        {jp:'さん', de:'3'},
+        {jp:'ご', de:'5'},
+        {jp:'じゅう', de:'10'},
+      ]},
+      {type:'match', q:'Verbinde Zahlen:', pairs:[
+        {jp:'に', de:'2'},
+        {jp:'ろく', de:'6'},
+        {jp:'はち', de:'8'},
+        {jp:'きゅう', de:'9'},
+      ]},
+      {type:'kana', q:'Welche Romaji-Schreibung gehört zu diesem Zeichen?', kana:'は', choices:['ha','hi','fu','he'], ans:'ha'},
+      {type:'kana', q:'Welche Romaji-Schreibung gehört zu diesem Zeichen?', kana:'ゆ', choices:['ya','yu','yo','wa'], ans:'yu'},
+      {type:'order', q:'Bringe den Satz in die richtige Reihenfolge:', words:['です','これは','ほん'], ans:'これは ほん です', hint:'Das ist ein Buch.'},
+    ]
+  },
+  {
+    id:3, label:'Woche 4', title:'Erste Sätze & Identität',
+    subtitle:'Watashi wa · Vorstellen · Nationalitäten',
+    kanji:'自己',
+    culture:{ icon:'🎌', text:'In Japan ist die Visitenkarte (<em>meishi</em> · 名刺) ein wichtiges Ritual. Man überreicht sie mit beiden Händen und einer Verbeugung, liest sie sorgfältig und legt sie niemals achtlos weg.' },
+    vocab:[
+      {jp:'わたし', rom:'wa-ta-shi', de:'ich', tag:'Pronomen', pitch:['L','H','L']},
+      {jp:'あなた', rom:'a-na-ta', de:'du / Sie', tag:'Pronomen', pitch:['L','H','L']},
+      {jp:'かれ', rom:'ka-re', de:'er', tag:'Pronomen', pitch:['L','H']},
+      {jp:'かのじょ', rom:'ka-no-jo', de:'sie', tag:'Pronomen', pitch:['L','H','H']},
+      {jp:'にほんじん', rom:'ni-ho-n-ji-n', de:'Japaner/in', tag:'Nationalität', pitch:['L','H','H','H','H']},
+      {jp:'ドイツじん', rom:'do-i-tsu-ji-n', de:'Deutscher/Deutsche', tag:'Nationalität', pitch:['L','H','H','H','H']},
+      {jp:'がくせい', rom:'ga-ku-se-i', de:'Student/in', tag:'Beruf', pitch:['L','H','H','H']},
+      {jp:'せんせい', rom:'se-n-se-i', de:'Lehrer/in', tag:'Beruf', pitch:['L','H','H','H']},
+      {jp:'なまえ', rom:'na-ma-e', de:'Name', tag:'Person', pitch:['L','H','L']},
+      {jp:'はじめまして', rom:'ha-ji-me-ma-shi-te', de:'Freut mich (Vorstellung)', tag:'Basics', pitch:['L','H','H','H','H','L']},
+    ],
+    hiragana: null,
+    grammar:[
+      {
+        title:'Vorstellen: わたしは～です',
+        text:'Um sich vorzustellen, verwendet man „watashi wa [Name] desu". Informell sagen Männer oft „boku" (ぼく) statt „watashi". Das Muster ist immer gleich.',
+        pattern:{jp:'はじめまして。わたしは___です。', rom:'Hajimemashite. Watashi wa ___ desu.', de:'Freut mich. Ich bin ___.'},
+        examples:[
+          {jp:'はじめまして。わたしはマリアです。', rom:'Hajimemashite. Watashi wa Maria desu.', de:'Freut mich. Ich bin Maria.'},
+          {jp:'わたしはドイツじんです。', rom:'Watashi wa doitsujin desu.', de:'Ich bin Deutsche/r.'},
+          {jp:'わたしはがくせいです。', rom:'Watashi wa gakusei desu.', de:'Ich bin Student/in.'},
+          {jp:'かれはせんせいです。', rom:'Kare wa sensei desu.', de:'Er ist Lehrer.'},
+        ]
+      },
+      {
+        title:'Fragen: ～ですか？',
+        text:'Um eine Ja/Nein-Frage zu bilden, hängt man einfach „ka" (か) ans Ende. Die Wortstellung ändert sich dabei NICHT — anders als im Deutschen.',
+        pattern:{jp:'～ですか？', rom:'~ desu ka?', de:'Ist das …? / Bist du …?'},
+        examples:[
+          {jp:'がくせいですか？', rom:'Gakusei desu ka?', de:'Sind Sie Student/in?'},
+          {jp:'にほんじんですか？', rom:'Nihonjin desu ka?', de:'Sind Sie Japaner/in?'},
+          {jp:'せんせいですか？', rom:'Sensei desu ka?', de:'Sind Sie Lehrer/in?'},
+        ]
+      }
+    ],
+    exercises:[
+      {type:'mc', q:'Wie sagt man „Ich bin Student" auf Japanisch?', choices:['わたしはがくせいです','あなたはせんせいです','かれはにほんじんです','わたしはドイツじんです'], ans:'わたしはがくせいです'},
+      {type:'mc', q:'Was hängt man an, um eine Ja/Nein-Frage zu bilden?', choices:['wa','desu','ka','ni'], ans:'ka'},
+      {type:'mc', q:'Was bedeutet „せんせい" (sensei)?', choices:['Student','Lehrer','Arzt','Freund'], ans:'Lehrer'},
+      {type:'mc', q:'Wie lautet „er" auf Japanisch?', choices:['わたし','あなた','かれ','かのじょ'], ans:'かれ'},
+      {type:'mc', q:'Was sagt man bei der ersten Vorstellung?', choices:['こんにちは','ありがとう','はじめまして','さようなら'], ans:'はじめまして'},
+      {type:'mc', q:'Wie fragt man „Sind Sie Japaner/in?"', choices:['にほんじんですか？','にほんじんです。','わたしはにほんじんです。','にほんじんでした。'], ans:'にほんじんですか？'},
+      {type:'fill', q:'„ich" auf Japanisch (Romaji): ___', ans:'watashi'},
+      {type:'fill', q:'„Freut mich" (bei Vorstellung) auf Japanisch (Romaji): ___', ans:'hajimemashite'},
+      {type:'fill', q:'„Student" auf Japanisch (Romaji): ___', ans:'gakusei'},
+      {type:'fill', q:'Fragenpartikel auf Japanisch (Romaji): ___', ans:'ka'},
+      {type:'match', q:'Verbinde Pronomen mit ihrer Bedeutung:', pairs:[
+        {jp:'わたし', de:'ich'},
+        {jp:'あなた', de:'du'},
+        {jp:'かれ', de:'er'},
+        {jp:'かのじょ', de:'sie'},
+      ]},
+      {type:'match', q:'Verbinde Berufe:', pairs:[
+        {jp:'がくせい', de:'Student/in'},
+        {jp:'せんせい', de:'Lehrer/in'},
+        {jp:'にほんじん', de:'Japaner/in'},
+        {jp:'ドイツじん', de:'Deutscher/Deutsche'},
+      ]},
+      {type:'order', q:'Bringe den Satz in die richtige Reihenfolge:', words:['です','わたしは','がくせい'], ans:'わたしは がくせい です', hint:'Ich bin Student.'},
+      {type:'order', q:'Bringe den Satz in die richtige Reihenfolge:', words:['ですか？','にほんじん','あなたは'], ans:'あなたは にほんじん ですか？', hint:'Sind Sie Japaner/in?'},
+    ]
+  },
+  {
+    id:4, label:'Woche 5–6', title:'Verben & Alltag',
+    subtitle:'Tätigkeiten · Essen · Verneinung',
+    kanji:'動詞',
+    culture:{ icon:'🍜', text:'In Japan sagt man vor dem Essen <em>itadakimasu</em> (いただきます) — wörtlich „ich empfange demütig". Nach dem Essen sagt man <em>gochisousama</em> (ごちそうさま) als Dank an den Koch und alle Beteiligten.' },
+    vocab:[
+      {jp:'たべる', rom:'ta-be-ru', de:'essen', tag:'Verb', pitch:['L','H','L']},
+      {jp:'のむ', rom:'no-mu', de:'trinken', tag:'Verb', pitch:['L','H']},
+      {jp:'いく', rom:'i-ku', de:'gehen', tag:'Verb', pitch:['L','H']},
+      {jp:'くる', rom:'ku-ru', de:'kommen', tag:'Verb', pitch:['H','L']},
+      {jp:'みる', rom:'mi-ru', de:'sehen/schauen', tag:'Verb', pitch:['H','L']},
+      {jp:'きく', rom:'ki-ku', de:'hören/fragen', tag:'Verb', pitch:['L','H']},
+      {jp:'ごはん', rom:'go-ha-n', de:'Reis / Mahlzeit', tag:'Essen', pitch:['L','H','H']},
+      {jp:'みず', rom:'mi-zu', de:'Wasser', tag:'Essen', pitch:['H','L']},
+      {jp:'おちゃ', rom:'o-cha', de:'grüner Tee', tag:'Essen', pitch:['L','H']},
+      {jp:'すし', rom:'su-shi', de:'Sushi', tag:'Essen', pitch:['H','L']},
+    ],
+    hiragana: null,
+    grammar:[
+      {
+        title:'Verben — höfliche Form (～ます)',
+        text:'In der höflichen Sprache (<em>teineigo</em>) endet das Verb auf ～ます (masu). Das Wörterbuch-Verb (z.B. たべる) wird zur ～ます-Form geändert. Das ist die Form, die man zuerst lernt.',
+        pattern:{jp:'たべます / のみます / いきます', rom:'tabemasu / nomimasu / ikimasu', de:'esse / trinke / gehe'},
+        examples:[
+          {jp:'ごはんをたべます。', rom:'Gohan wo tabemasu.', de:'Ich esse Reis.'},
+          {jp:'おちゃをのみます。', rom:'Ocha wo nomimasu.', de:'Ich trinke grünen Tee.'},
+          {jp:'がっこうにいきます。', rom:'Gakkou ni ikimasu.', de:'Ich gehe zur Schule.'},
+          {jp:'えいがをみます。', rom:'Eiga wo mimasu.', de:'Ich schaue einen Film.'},
+        ]
+      },
+      {
+        title:'Verneinung: ～ません',
+        text:'Die Verneinung der höflichen Form ist einfach: ～ます wird zu ～ません (masen). Das Muster funktioniert für alle Verben.',
+        pattern:{jp:'たべません / のみません', rom:'tabemasen / nomimasen', de:'esse nicht / trinke nicht'},
+        examples:[
+          {jp:'にくをたべません。', rom:'Niku wo tabemasen.', de:'Ich esse kein Fleisch.'},
+          {jp:'おさけをのみません。', rom:'Osake wo nomimasen.', de:'Ich trinke keinen Alkohol.'},
+          {jp:'がっこうにいきません。', rom:'Gakkou ni ikimasen.', de:'Ich gehe nicht zur Schule.'},
+        ]
+      }
+    ],
+    exercises:[
+      {type:'mc', q:'Wie lautet die höfliche Form von „taberu" (essen)?', choices:['たべます','たべません','たべる','たべた'], ans:'たべます'},
+      {type:'mc', q:'Was bedeutet „のみません"?', choices:['Ich trinke','Ich trinke nicht','Ich esse','Ich esse nicht'], ans:'Ich trinke nicht'},
+      {type:'mc', q:'Was bedeutet „いただきます"?', choices:['Guten Appetit','Danke','Entschuldigung','Auf Wiedersehen'], ans:'Guten Appetit'},
+      {type:'mc', q:'Welche Partikel steht vor dem Objekt (z.B. Essen)?', choices:['は (wa)','に (ni)','を (wo)','が (ga)'], ans:'を (wo)'},
+      {type:'mc', q:'Wie bildet man die Verneinung der ～ます-Form?', choices:['～ません','～でした','～ないです','～じゃない'], ans:'～ません'},
+      {type:'mc', q:'Was ist die höfliche Form von „iku" (gehen)?', choices:['いきます','いきません','いく','いった'], ans:'いきます'},
+      {type:'fill', q:'„trinken" auf Japanisch (Romaji, Wörterbuchform): ___', ans:'nomu'},
+      {type:'fill', q:'„Wasser" auf Japanisch (Romaji): ___', ans:'mizu'},
+      {type:'fill', q:'„sehen" als ～ます-Form (Romaji): ___', ans:'mimasu'},
+      {type:'fill', q:'Verneinung von „たべます" (Romaji): ___', ans:'tabemasen'},
+      {type:'match', q:'Verbinde Verben mit Bedeutungen:', pairs:[
+        {jp:'たべます', de:'esse'},
+        {jp:'のみます', de:'trinke'},
+        {jp:'いきます', de:'gehe'},
+        {jp:'みます', de:'schaue'},
+      ]},
+      {type:'match', q:'Verbinde Essen und Trinken:', pairs:[
+        {jp:'ごはん', de:'Reis'},
+        {jp:'みず', de:'Wasser'},
+        {jp:'おちゃ', de:'grüner Tee'},
+        {jp:'すし', de:'Sushi'},
+      ]},
+      {type:'order', q:'Bringe den Satz in die richtige Reihenfolge:', words:['たべます。','ごはんを','わたしは'], ans:'わたしは ごはんを たべます。', hint:'Ich esse Reis.'},
+      {type:'order', q:'Bringe den Satz in die richtige Reihenfolge:', words:['のみません。','おさけを','わたしは'], ans:'わたしは おさけを のみません。', hint:'Ich trinke keinen Alkohol.'},
+    ]
+  },
+  {
+    id:5, label:'Woche 7', title:'Orte & Wegbeschreibung',
+    subtitle:'Wo ist …? · Richtungen · Stadtleben',
+    kanji:'場所',
+    culture:{ icon:'🗺️', text:'In Japan haben Adressen eine umgekehrte Reihenfolge: zuerst das Präfektur, dann die Stadt, dann das Viertel, dann die Hausnummer. Straßennamen existieren kaum — man navigiert über Blocknummern.' },
+    vocab:[
+      {jp:'みぎ', rom:'mi-gi', de:'rechts', tag:'Richtung', pitch:['L','H']},
+      {jp:'ひだり', rom:'hi-da-ri', de:'links', tag:'Richtung', pitch:['H','L','L']},
+      {jp:'まっすぐ', rom:'ma-ssu-gu', de:'geradeaus', tag:'Richtung', pitch:['L','H','H']},
+      {jp:'えき', rom:'e-ki', de:'Bahnhof', tag:'Ort', pitch:['L','H']},
+      {jp:'スーパー', rom:'suu-paa', de:'Supermarkt', tag:'Ort', pitch:['L','H','H']},
+      {jp:'びょういん', rom:'byo-u-i-n', de:'Krankenhaus', tag:'Ort', pitch:['L','H','H','H']},
+      {jp:'レストラン', rom:'re-su-to-ra-n', de:'Restaurant', tag:'Ort', pitch:['L','H','H','H','H']},
+      {jp:'ちかい', rom:'chi-ka-i', de:'nah', tag:'Adjektiv', pitch:['L','H','L']},
+      {jp:'とおい', rom:'to-o-i', de:'weit', tag:'Adjektiv', pitch:['L','H','L']},
+      {jp:'どこ', rom:'do-ko', de:'wo?', tag:'Fragewort', pitch:['L','H']},
+    ],
+    hiragana: null,
+    grammar:[
+      {
+        title:'Wo ist …? — ～はどこですか？',
+        text:'„Doko" (どこ) bedeutet „wo". Die Frage folgt demselben Muster wie alle anderen: Thema + は + Fragewort + ですか？',
+        pattern:{jp:'～はどこですか？', rom:'~ wa doko desu ka?', de:'Wo ist …?'},
+        examples:[
+          {jp:'えきはどこですか？', rom:'Eki wa doko desu ka?', de:'Wo ist der Bahnhof?'},
+          {jp:'トイレはどこですか？', rom:'Toire wa doko desu ka?', de:'Wo ist die Toilette?'},
+          {jp:'レストランはどこですか？', rom:'Resutoran wa doko desu ka?', de:'Wo ist das Restaurant?'},
+          {jp:'びょういんはどこですか？', rom:'Byouin wa doko desu ka?', de:'Wo ist das Krankenhaus?'},
+        ]
+      }
+    ],
+    exercises:[
+      {type:'mc', q:'Wie fragt man „Wo ist der Bahnhof?"', choices:['えきはどこですか？','えきはなんですか？','えきにいきます','えきですか？'], ans:'えきはどこですか？'},
+      {type:'mc', q:'Was bedeutet „まっすぐ" (massugu)?', choices:['rechts','links','geradeaus','zurück'], ans:'geradeaus'},
+      {type:'mc', q:'Was bedeutet „とおい" (tooi)?', choices:['nah','weit','schnell','langsam'], ans:'weit'},
+      {type:'mc', q:'Was bedeutet „どこ" (doko)?', choices:['was','wer','wo','wie'], ans:'wo'},
+      {type:'mc', q:'Wie sagt man „links" auf Japanisch?', choices:['みぎ','まっすぐ','ひだり','どこ'], ans:'ひだり'},
+      {type:'mc', q:'Was ist „えき" (eki)?', choices:['Supermarkt','Bahnhof','Krankenhaus','Restaurant'], ans:'Bahnhof'},
+      {type:'fill', q:'„links" auf Japanisch (Romaji): ___', ans:'hidari'},
+      {type:'fill', q:'„wo?" auf Japanisch (Romaji): ___', ans:'doko'},
+      {type:'fill', q:'„Krankenhaus" auf Japanisch (Romaji): ___', ans:'byouin'},
+      {type:'fill', q:'„nah" auf Japanisch (Romaji): ___', ans:'chikai'},
+      {type:'match', q:'Verbinde Richtungen:', pairs:[
+        {jp:'みぎ', de:'rechts'},
+        {jp:'ひだり', de:'links'},
+        {jp:'まっすぐ', de:'geradeaus'},
+        {jp:'どこ', de:'wo?'},
+      ]},
+      {type:'match', q:'Verbinde Orte:', pairs:[
+        {jp:'えき', de:'Bahnhof'},
+        {jp:'びょういん', de:'Krankenhaus'},
+        {jp:'スーパー', de:'Supermarkt'},
+        {jp:'レストラン', de:'Restaurant'},
+      ]},
+      {type:'order', q:'Bringe die Frage in die richtige Reihenfolge:', words:['どこですか？','えきは'], ans:'えきは どこですか？', hint:'Wo ist der Bahnhof?'},
+    ]
+  },
+  {
+    id:6, label:'Woche 8–9', title:'Erste Kanji',
+    subtitle:'15 häufige Kanji · Wochentage · Natur',
+    kanji:'漢字',
+    culture:{ icon:'📖', text:'Kanji (<em>漢字</em>) wurden aus China übernommen. Ein gebildeter Japaner kennt ca. 2.000 Kanji. Die Schule vermittelt 1.026 Kanji in der Grundschule (<em>kyouiku kanji</em> · 教育漢字).' },
+    vocab:[
+      {jp:'日', rom:'nichi/hi', de:'Sonne / Tag / Sonntag', tag:'Kanji'},
+      {jp:'月', rom:'getsu/tsuki', de:'Mond / Monat / Montag', tag:'Kanji'},
+      {jp:'火', rom:'ka/hi', de:'Feuer / Dienstag', tag:'Kanji'},
+      {jp:'水', rom:'sui/mizu', de:'Wasser / Mittwoch', tag:'Kanji'},
+      {jp:'木', rom:'moku/ki', de:'Baum / Donnerstag', tag:'Kanji'},
+      {jp:'金', rom:'kin/kane', de:'Gold / Geld / Freitag', tag:'Kanji'},
+      {jp:'土', rom:'do/tsuchi', de:'Erde / Samstag', tag:'Kanji'},
+      {jp:'人', rom:'jin/hito', de:'Mensch', tag:'Kanji'},
+      {jp:'山', rom:'san/yama', de:'Berg', tag:'Kanji'},
+      {jp:'川', rom:'kawa', de:'Fluss', tag:'Kanji'},
+      {jp:'田', rom:'ta/den', de:'Reisfeld', tag:'Kanji'},
+      {jp:'口', rom:'kuchi/kou', de:'Mund', tag:'Kanji'},
+    ],
+    hiragana: null,
+    grammar:[
+      {
+        title:'Wochentage auf Japanisch',
+        text:'Die japanischen Wochentage basieren auf den 5 Elementen (Feuer, Wasser, Holz, Gold, Erde) plus Sonne und Mond. Das macht sie sehr leicht zu merken!',
+        pattern:{jp:'日月火水木金土', rom:'nichi·getsu·ka·sui·moku·kin·do', de:'So · Mo · Di · Mi · Do · Fr · Sa'},
+        examples:[
+          {jp:'月曜日 (げつようび)', rom:'getsuyoubi', de:'Montag (wörtlich: Mondtag)'},
+          {jp:'水曜日 (すいようび)', rom:'suiyoubi', de:'Mittwoch (Wassertag)'},
+          {jp:'金曜日 (きんようび)', rom:'kinyoubi', de:'Freitag (Goldtag)'},
+          {jp:'日曜日 (にちようび)', rom:'nichiyoubi', de:'Sonntag (Sonnentag)'},
+        ]
+      }
+    ],
+    exercises:[
+      {type:'mc', q:'Welches Kanji bedeutet „Wasser"?', choices:['火','水','木','金'], ans:'水'},
+      {type:'mc', q:'Was bedeutet das Kanji 山?', choices:['Fluss','Mensch','Berg','Feld'], ans:'Berg'},
+      {type:'mc', q:'Welches Kanji steht für Freitag?', choices:['木','金','土','日'], ans:'金'},
+      {type:'mc', q:'Was bedeutet das Kanji 人?', choices:['Berg','Fluss','Mensch','Mund'], ans:'Mensch'},
+      {type:'mc', q:'Welche 5 Elemente stecken in den Wochentagen?', choices:['Feuer,Wasser,Holz,Gold,Erde','Feuer,Eis,Holz,Gold,Luft','Feuer,Wasser,Holz,Silber,Erde','Sonne,Mond,Feuer,Wasser,Erde'], ans:'Feuer,Wasser,Holz,Gold,Erde'},
+      {type:'mc', q:'Welches Kanji bedeutet „Feuer" / Dienstag?', choices:['水','木','火','土'], ans:'火'},
+      {type:'fill', q:'„Montag" auf Japanisch (Romaji): ___', ans:'getsuyoubi'},
+      {type:'fill', q:'Das Kanji für „Mensch" (Romaji-Lesung: hito): ___', ans:'人'},
+      {type:'fill', q:'„Mittwoch" auf Japanisch (Romaji): ___', ans:'suiyoubi'},
+      {type:'fill', q:'Das Kanji 金 bedeutet auf Deutsch: ___', ans:'Gold'},
+      {type:'match', q:'Verbinde Kanji mit Bedeutungen:', pairs:[
+        {jp:'日', de:'Sonne/Tag'},
+        {jp:'月', de:'Mond/Monat'},
+        {jp:'山', de:'Berg'},
+        {jp:'川', de:'Fluss'},
+      ]},
+      {type:'match', q:'Verbinde Kanji mit Wochentagen:', pairs:[
+        {jp:'月 (月曜日)', de:'Montag'},
+        {jp:'水 (水曜日)', de:'Mittwoch'},
+        {jp:'金 (金曜日)', de:'Freitag'},
+        {jp:'土 (土曜日)', de:'Samstag'},
+      ]},
+    ]
+  },
+  {
+    id:7, label:'Woche 10', title:'Einkaufen & Zahlen',
+    subtitle:'Preise · Mengen · Einkaufssprache',
+    kanji:'買物',
+    culture:{ icon:'🏪', text:'Japanische Konbini (<em>convenience stores</em> · コンビニ) wie 7-Eleven oder Lawson sind 24/7 geöffnet. Man kann dort bezahlen, Pakete abholen, Geld abheben und frische Onigiri kaufen.' },
+    vocab:[
+      {jp:'いくら', rom:'i-ku-ra', de:'Wie viel? (Preis)', tag:'Einkaufen'},
+      {jp:'えん', rom:'en', de:'Yen (¥)', tag:'Einkaufen'},
+      {jp:'やすい', rom:'ya-su-i', de:'billig/günstig', tag:'Adjektiv'},
+      {jp:'たかい', rom:'ta-ka-i', de:'teuer/hoch', tag:'Adjektiv'},
+      {jp:'ください', rom:'ku-da-sa-i', de:'Bitte geben Sie mir …', tag:'Einkaufen'},
+      {jp:'ひゃく', rom:'hya-ku', de:'100', tag:'Zahlen'},
+      {jp:'せん', rom:'sen', de:'1.000', tag:'Zahlen'},
+      {jp:'まん', rom:'man', de:'10.000', tag:'Zahlen'},
+      {jp:'おつり', rom:'o-tsu-ri', de:'Wechselgeld', tag:'Einkaufen'},
+      {jp:'レジ', rom:'re-ji', de:'Kasse', tag:'Einkaufen'},
+    ],
+    hiragana: null,
+    grammar:[
+      {
+        title:'Preise fragen: ～はいくらですか？',
+        text:'„Ikura" (いくら) bedeutet „wie viel (Geld)". Um den Preis anzugeben, sagt man: Zahl + えん + です. 100 Yen = ひゃくえんです.',
+        pattern:{jp:'～はいくらですか？', rom:'~ wa ikura desu ka?', de:'Wie viel kostet …?'},
+        examples:[
+          {jp:'これはいくらですか？', rom:'Kore wa ikura desu ka?', de:'Wie viel kostet das?'},
+          {jp:'にひゃくえんです。', rom:'Nihyaku en desu.', de:'Es kostet 200 Yen.'},
+          {jp:'～をひとつください。', rom:'~ wo hitotsu kudasai.', de:'Geben Sie mir bitte ein(e) ~.'},
+          {jp:'おつりはいくらですか？', rom:'Otsuri wa ikura desu ka?', de:'Wie viel Wechselgeld gibt es?'},
+        ]
+      }
+    ],
+    exercises:[
+      {type:'mc', q:'Wie fragt man nach dem Preis?', choices:['これはどこですか？','これはいくらですか？','これはなんですか？','これはだれですか？'], ans:'これはいくらですか？'},
+      {type:'mc', q:'Was bedeutet „ください" (kudasai)?', choices:['Danke','Entschuldigung','Bitte geben Sie mir','Guten Tag'], ans:'Bitte geben Sie mir'},
+      {type:'mc', q:'Was ist ein „コンビニ" (konbini)?', choices:['Supermarkt','Convenience Store','Bahnhof','Restaurant'], ans:'Convenience Store'},
+      {type:'mc', q:'Was bedeutet „やすい" (yasui)?', choices:['teuer','billig','groß','klein'], ans:'billig'},
+      {type:'mc', q:'Wie viel ist „せん" (sen)?', choices:['100','1.000','10.000','100.000'], ans:'1.000'},
+      {type:'mc', q:'Was ist „おつり" (otsuri)?', choices:['Kasse','Preis','Wechselgeld','Yen'], ans:'Wechselgeld'},
+      {type:'fill', q:'„teuer" auf Japanisch (Romaji): ___', ans:'takai'},
+      {type:'fill', q:'„1.000" auf Japanisch (Romaji): ___', ans:'sen'},
+      {type:'fill', q:'„Wie viel?" auf Japanisch (Romaji): ___', ans:'ikura'},
+      {type:'fill', q:'„Kasse" auf Japanisch (Romaji): ___', ans:'reji'},
+      {type:'match', q:'Verbinde Zahlen:', pairs:[
+        {jp:'ひゃく', de:'100'},
+        {jp:'せん', de:'1.000'},
+        {jp:'まん', de:'10.000'},
+        {jp:'えん', de:'Yen'},
+      ]},
+      {type:'match', q:'Verbinde Adjektive:', pairs:[
+        {jp:'やすい', de:'billig'},
+        {jp:'たかい', de:'teuer'},
+        {jp:'ちかい', de:'nah'},
+        {jp:'とおい', de:'weit'},
+      ]},
+    ]
+  },
+  {
+    id:8, label:'Woche 11–12', title:'Zeit & Wiederholung',
+    subtitle:'Uhrzeiten · Monate · Alles zusammen',
+    kanji:'時間',
+    culture:{ icon:'⏰', text:'Japaner sind bekannt für Pünktlichkeit. Der Shinkansen (<em>新幹線</em>) hat eine durchschnittliche Verspätung von unter einer Minute. Zu spät kommen gilt als Respektlosigkeit (<em>shitsurei</em>).' },
+    vocab:[
+      {jp:'いま', rom:'i-ma', de:'jetzt / gerade', tag:'Zeit'},
+      {jp:'なんじ', rom:'na-n-ji', de:'Wie viel Uhr?', tag:'Zeit'},
+      {jp:'ごぜん', rom:'go-ze-n', de:'Vormittag (AM)', tag:'Zeit'},
+      {jp:'ごご', rom:'go-go', de:'Nachmittag (PM)', tag:'Zeit'},
+      {jp:'～じ', rom:'~ji', de:'Uhr (Stunde)', tag:'Zeit'},
+      {jp:'～ふん', rom:'~fun', de:'Minute', tag:'Zeit'},
+      {jp:'きょう', rom:'kyo-u', de:'heute', tag:'Zeit'},
+      {jp:'あした', rom:'a-shi-ta', de:'morgen', tag:'Zeit'},
+      {jp:'きのう', rom:'ki-no-u', de:'gestern', tag:'Zeit'},
+      {jp:'まいにち', rom:'ma-i-ni-chi', de:'jeden Tag', tag:'Zeit'},
+    ],
+    hiragana: null,
+    grammar:[
+      {
+        title:'Uhrzeit: いまなんじですか？',
+        text:'„Nanji" (なんじ) bedeutet „welche Uhrzeit". Die Stunden bildet man mit Zahl + じ (ji), Minuten mit Zahl + ふん (fun). „Han" (はん) bedeutet „halb" (30 Minuten).',
+        pattern:{jp:'いまなんじですか？', rom:'Ima nanji desu ka?', de:'Wie spät ist es jetzt?'},
+        examples:[
+          {jp:'さんじです。', rom:'Sanji desu.', de:'Es ist 3 Uhr.'},
+          {jp:'ごごにじはんです。', rom:'Gogo niji han desu.', de:'Es ist 14:30 Uhr.'},
+          {jp:'ごぜんくじごふんです。', rom:'Gozen kuji gofun desu.', de:'Es ist 9:05 Uhr.'},
+          {jp:'いまはちじです。', rom:'Ima hachiji desu.', de:'Jetzt ist es 8 Uhr.'},
+        ]
+      },
+      {
+        title:'Satzstruktur: Alles zusammen',
+        text:'Japanisch ist eine SOV-Sprache (Subjekt-Objekt-Verb). Das Verb kommt IMMER ans Ende. Zeitangaben stehen meist vorne oder direkt nach dem Subjekt.',
+        pattern:{jp:'わたしは　～を　～ます', rom:'Watashi wa ~ wo ~ masu', de:'Ich [Objekt] [Verb]'},
+        examples:[
+          {jp:'わたしはまいにちにほんごをべんきょうします。', rom:'Watashi wa mainichi nihongo wo benkyou shimasu.', de:'Ich lerne jeden Tag Japanisch.'},
+          {jp:'あしたえきにいきます。', rom:'Ashita eki ni ikimasu.', de:'Morgen gehe ich zum Bahnhof.'},
+          {jp:'きのうすしをたべました。', rom:'Kinou sushi wo tabemashita.', de:'Gestern aß ich Sushi.'},
+        ]
+      }
+    ],
+    exercises:[
+      {type:'mc', q:'Wie fragt man „Wie spät ist es?"', choices:['いまなんじですか？','きょうはなんですか？','なんじにいきますか？','いつですか？'], ans:'いまなんじですか？'},
+      {type:'mc', q:'An welcher Position steht das Verb im japanischen Satz?', choices:['Am Anfang','In der Mitte','Am Ende','Überall'], ans:'Am Ende'},
+      {type:'mc', q:'Was bedeutet „ごぜん" (gozen)?', choices:['Nachmittag','Abend','Vormittag','Nacht'], ans:'Vormittag'},
+      {type:'mc', q:'Was bedeutet „はん" (han) bei Uhrzeiten?', choices:['eine Stunde','halb (30 Min.)','eine Minute','zehn Minuten'], ans:'halb (30 Min.)'},
+      {type:'mc', q:'Was ist „きのう" (kinou)?', choices:['heute','morgen','gestern','jeden Tag'], ans:'gestern'},
+      {type:'mc', q:'Japanisch ist eine … -Sprache (Satzstruktur)?', choices:['SVO','VSO','SOV','OVS'], ans:'SOV'},
+      {type:'fill', q:'„morgen" auf Japanisch (Romaji): ___', ans:'ashita'},
+      {type:'fill', q:'„jeden Tag" auf Japanisch (Romaji): ___', ans:'mainichi'},
+      {type:'fill', q:'„jetzt" auf Japanisch (Romaji): ___', ans:'ima'},
+      {type:'fill', q:'„gestern" auf Japanisch (Romaji): ___', ans:'kinou'},
+      {type:'match', q:'Verbinde Zeitangaben:', pairs:[
+        {jp:'いま', de:'jetzt'},
+        {jp:'きょう', de:'heute'},
+        {jp:'あした', de:'morgen'},
+        {jp:'きのう', de:'gestern'},
+      ]},
+      {type:'match', q:'Verbinde Uhrzeit-Vokabeln:', pairs:[
+        {jp:'ごぜん', de:'Vormittag'},
+        {jp:'ごご', de:'Nachmittag'},
+        {jp:'なんじ', de:'Wie viel Uhr?'},
+        {jp:'まいにち', de:'jeden Tag'},
+      ]},
+      {type:'order', q:'Bringe den Satz in die richtige Reihenfolge:', words:['べんきょうします。','まいにち','わたしは','にほんごを'], ans:'わたしは まいにち にほんごを べんきょうします。', hint:'Ich lerne jeden Tag Japanisch.'},
+    ]
+  },
+];
+
+// ═══════════════════════════════════════════
+//  STATE
+// ═══════════════════════════════════════════
+let state = {
+  currentWeek: 0,
+  currentTab: 'vocab',
+  learnedKana: JSON.parse(localStorage.getItem('jp_kana') || '[]'),
+  completedWeeks: JSON.parse(localStorage.getItem('jp_weeks') || '[]'),
+  exIndex: 0, exRichtig: 0, exFalsch: 0, exAnswered: false, exShuffled: [],
+  matchSelected: null, matchMatched: new Set(),
+  orderPlaced: [], orderTokens: [],
+};
+
+function saveState() {
+  localStorage.setItem('jp_kana', JSON.stringify(state.learnedKana));
+  localStorage.setItem('jp_weeks', JSON.stringify(state.completedWeeks));
+}
+
+// ═══════════════════════════════════════════
+//  INIT
+// ═══════════════════════════════════════════
+function init() {
+  renderCulture();
+  buildWeeksNav();
+  renderStats();
+  loadWeek(0);
+}
+
+function renderCulture() {
+  const c = CULTURE[Math.floor(Math.random() * CULTURE.length)];
+  document.getElementById('cult-icon').textContent = c.icon;
+  document.getElementById('cult-text').innerHTML = c.text;
+}
+
+function renderStats() {
+  // Count actual vocab words learned
+  const learnedVocab = state.completedWeeks.reduce((sum, wid) => {
+    const w = WEEKS.find(x => x.id === wid);
+    return sum + (w ? w.vocab.length : 0);
+  }, 0);
+  document.getElementById('stat-weeks').textContent = state.completedWeeks.length;
+  document.getElementById('stat-vocab').textContent = learnedVocab;
+  document.getElementById('stat-kana').textContent = state.learnedKana.length;
+  const pct = Math.round((state.completedWeeks.length / WEEKS.length) * 100);
+  document.getElementById('main-progress-bar').style.width = pct + '%';
+  document.getElementById('pct-label').textContent = pct + '%';
+}
+
+function buildWeeksNav() {
+  const nav = document.getElementById('weeks-nav');
+  nav.innerHTML = '';
+  WEEKS.forEach((w, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'week-btn' + (i === state.currentWeek ? ' active' : '') +
+      (state.completedWeeks.includes(w.id) ? ' done' : '');
+    btn.textContent = w.label;
+    btn.onclick = () => loadWeek(i);
+    nav.appendChild(btn);
+  });
+}
+
+// ═══════════════════════════════════════════
+//  LOAD WEEK
+// ═══════════════════════════════════════════
+function loadWeek(idx) {
+  state.currentWeek = idx;
+  state.currentTab = 'vocab';
+  buildWeeksNav();
+  renderLesson(WEEKS[idx]);
+}
+
+function renderLesson(w) {
+  const card = document.getElementById('lesson-card');
+  const hasKana = w.hiragana && w.hiragana.length > 0;
+  card.innerHTML = `
+    <div class="lesson-header" data-kanji="${w.kanji || ''}">
+      <div class="lesson-week-label">${w.label} · A1 · 12 Wochen Plan</div>
+      <div class="lesson-title">${w.title}</div>
+      <div class="lesson-subtitle">${w.subtitle}</div>
+    </div>
+    <div class="tabs" id="lesson-tabs">
+      <button class="tab-btn active" data-tab="vocab" onclick="switchTab('vocab', this)">📚 Vokabeln</button>
+      ${hasKana ? '<button class="tab-btn" data-tab="kana" onclick="switchTab(\'kana\', this)">✍️ Hiragana</button>' : ''}
+      <button class="tab-btn" data-tab="grammar" onclick="switchTab('grammar', this)">📐 Grammatik</button>
+      <button class="tab-btn" data-tab="exercise" onclick="switchTab('exercise', this)">✏️ Übungen</button>
+      <button class="tab-btn" data-tab="culture" onclick="switchTab('culture', this)">🎌 Kultur</button>
+    </div>
+    <div id="tab-vocab" class="tab-content active">${buildVocabTab(w)}</div>
+    ${hasKana ? `<div id="tab-kana" class="tab-content">${buildKanaTab(w)}</div>` : ''}
+    <div id="tab-grammar" class="tab-content">${buildGrammarTab(w)}</div>
+    <div id="tab-exercise" class="tab-content">${buildExerciseTab(w)}</div>
+    <div id="tab-culture" class="tab-content">${buildCultureTab(w)}</div>
+  `;
+  initExercises(w);
+}
+
+function switchTab(name, btn) {
+  document.querySelectorAll('#lesson-tabs .tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  const t = document.getElementById('tab-' + name);
+  if(t) t.classList.add('active');
+}
+
+// ═══════════════════════════════════════════
+//  VOCAB TAB
+// ═══════════════════════════════════════════
+const TTS_OK = 'speechSynthesis' in window;
+
+function buildVocabTab(w) {
+  return `
+    <div class="vocab-header">
+      <div class="vocab-hint">
+        🖱️ Klicken zum Umdrehen &nbsp;·&nbsp;
+        🔊 Anhören
+        ${!TTS_OK ? ' <span style="color:#ddd">(TTS nicht verfügbar)</span>' : ''}
+      </div>
+      <div class="pitch-legend">
+        <span><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red-jp);"></span> hoch</span>
+        <span><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#ccc;"></span> tief</span>
+      </div>
+    </div>
+    <div class="vocab-grid">${w.vocab.map(v => `
+    <div class="vocab-card" onclick="flipVocab(this)">
+      <span class="vocab-jp">${v.jp}</span>
+      <span class="vocab-rom">${v.rom}</span>
+      <span class="vocab-de">${v.de}</span>
+      <span class="vocab-tag">${v.tag}</span>
+      ${v.pitch ? buildPitchDiagram(v.pitch, v.rom) : ''}
+      ${TTS_OK ? `<button class="speak-btn" onclick="event.stopPropagation();speakWord('${v.jp.replace(/'/g,"\\'")}', this)">▶ Anhören</button>` : ''}
+    </div>`).join('')}</div>`;
+}
+
+function buildPitchDiagram(pitch, rom) {
+  const syls = rom.split('-').filter(s => s && s.trim());
+  const len = Math.min(pitch.length, syls.length);
+  if(len === 0) return '';
+  let html = '<div class="pitch-wrap"><div class="pitch-syllables">';
+  for(let i = 0; i < len; i++) {
+    const isHigh = pitch[i] === 'H';
+    html += `<div class="pitch-syl ${isHigh ? 'high' : 'low'}">
+      <div style="position:relative;width:28px;height:22px;display:flex;align-items:center;justify-content:center;">
+        <div class="pitch-dot" style="${isHigh ? '' : 'margin-top:10px;'}"></div>
+        ${i < len-1 ? `<div style="position:absolute;top:${isHigh?'5px':'15px'};left:50%;right:-50%;height:2px;background:${isHigh?'var(--red-jp)':'#ddd'};"></div>` : ''}
+      </div>
+      <div class="pitch-kana-rom">${syls[i]||''}</div>
+    </div>`;
+  }
+  html += '</div><div class="pitch-label">H=hoch · L=tief</div></div>';
+  return html;
+}
+
+function speakWord(text, btn) {
+  if(!TTS_OK) return;
+  window.speechSynthesis.cancel();
+  const utt = new SpeechSynthesisUtterance(text);
+  utt.lang = 'ja-JP'; utt.rate = 0.85; utt.pitch = 1;
+  const voices = window.speechSynthesis.getVoices();
+  const jpVoice = voices.find(v => v.lang === 'ja-JP') || voices.find(v => v.lang.startsWith('ja'));
+  if(jpVoice) utt.voice = jpVoice;
+  btn.classList.add('speaking');
+  utt.onend = () => btn.classList.remove('speaking');
+  utt.onerror = () => btn.classList.remove('speaking');
+  window.speechSynthesis.speak(utt);
+}
+
+function flipVocab(card) {
+  card.classList.toggle('flipped');
+}
+
+// ═══════════════════════════════════════════
+//  KANA TAB
+// ═══════════════════════════════════════════
+function buildKanaTab(w) {
+  if(!w.hiragana) return '';
+  const learned = w.hiragana.filter(k => k.c.trim() && state.learnedKana.includes(k.c)).length;
+  const total = w.hiragana.filter(k => k.c.trim()).length;
+  const pct = total ? Math.round(learned/total*100) : 0;
+  return `
+    <div class="kana-intro">
+      Klicke auf ein Zeichen um es als <strong>gelernt</strong> zu markieren (grün = gelernt).
+      Lerne die Zeichen Reihe für Reihe: Vokal-Reihe (a-i-u-e-o), dann ka-ki-ku-ke-ko usw.
+    </div>
+    <div class="hiragana-grid">
+      ${w.hiragana.map(k => k.c.trim() ? `
+        <div class="kana-card ${state.learnedKana.includes(k.c) ? 'learned' : ''}"
+             onclick="toggleKana('${k.c}', this)">
+          <span class="kana-char">${k.c}</span>
+          <div class="kana-rom">${k.r}</div>
+        </div>` : '<div class="kana-card" style="opacity:0;pointer-events:none;"></div>'
+      ).join('')}
+    </div>
+    <div class="kana-progress-text">
+      <span>${learned} / ${total} gelernt</span>
+      <div class="kana-progress-bar">
+        <div class="kana-progress-fill" id="kana-pbar" style="width:${pct}%"></div>
+      </div>
+      <span>${pct}%</span>
+    </div>`;
+}
+
+function toggleKana(char, card) {
+  const idx = state.learnedKana.indexOf(char);
+  if(idx === -1) { state.learnedKana.push(char); card.classList.add('learned'); }
+  else { state.learnedKana.splice(idx,1); card.classList.remove('learned'); }
+  saveState(); renderStats();
+  // Update progress bar
+  const tc = card.closest('.tab-content');
+  const allCards = tc.querySelectorAll('.kana-card:not([style*="opacity:0"])');
+  const learnedCards = tc.querySelectorAll('.kana-card.learned');
+  const pct = allCards.length ? Math.round(learnedCards.length/allCards.length*100) : 0;
+  const pb = tc.querySelector('#kana-pbar');
+  const pt = tc.querySelectorAll('.kana-progress-text span');
+  if(pb) pb.style.width = pct+'%';
+  if(pt[0]) pt[0].textContent = learnedCards.length + ' / ' + allCards.length + ' gelernt';
+  if(pt[1]) pt[1].textContent = pct+'%';
+}
+
+// ═══════════════════════════════════════════
+//  GRAMMAR TAB
+// ═══════════════════════════════════════════
+function buildGrammarTab(w) {
+  return w.grammar.map(g => `
+    <div class="grammar-block">
+      <h3>${g.title}</h3>
+      <p class="grammar-text">${g.text}</p>
+      <div class="pattern-box">
+        <div class="jp">${g.pattern.jp}</div>
+        <div class="rom">${g.pattern.rom}</div>
+        <div class="de">${g.pattern.de}</div>
+      </div>
+      <ul class="examples-list">
+        ${g.examples.map(e => `<li>
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:0.5rem;">
+            <div>
+              <span class="ex-jp">${e.jp}</span><br>
+              <span class="ex-rom">${e.rom}</span>
+              ${e.de ? `<br><span class="ex-de">${e.de}</span>` : ''}
+            </div>
+            ${TTS_OK ? `<button class="speak-btn" style="flex-shrink:0;margin-top:0;" onclick="speakWord('${e.jp.replace(/['"]/g,'')}',this)">▶</button>` : ''}
+          </div>
+        </li>`).join('')}
+      </ul>
+    </div>`).join('');
+}
+
+// ═══════════════════════════════════════════
+//  CULTURE TAB
+// ═══════════════════════════════════════════
+function buildCultureTab(w) {
+  const c = w.culture;
+  // Pick a different culture fact that doesn't repeat the main one
+  const extras = CULTURE.filter((_, i) => i !== (w.id - 1) % CULTURE.length);
+  const extra = extras[w.id % extras.length];
+  return `
+    <div class="culture-fact">
+      <h4>${c.icon} Kulturwissen — ${w.title}</h4>
+      <p>${c.text}</p>
+    </div>
+    <div class="culture-fact" style="background:linear-gradient(135deg,#1e3a5f,#0f2040);">
+      <h4>${extra.icon} Weiteres Kulturwissen</h4>
+      <p>${extra.text}</p>
+    </div>`;
+}
+
+// ═══════════════════════════════════════════
+//  EXERCISES
+// ═══════════════════════════════════════════
+function buildExerciseTab(w) {
+  return `
+    <div class="ex-scoreboard">
+      <div class="ex-score-item sc-r"><span class="n" id="sc-r">0</span><span class="l">Richtig</span></div>
+      <div class="ex-score-item sc-g"><span class="n" id="sc-g">0</span><span class="l">Gesamt</span></div>
+      <div class="ex-score-item sc-f"><span class="n" id="sc-f">0</span><span class="l">Falsch</span></div>
+    </div>
+    <div id="ex-area"></div>
+    <div id="ex-result" class="result-screen"></div>`;
+}
+
+function initExercises(w) {
+  state.exShuffled = [...w.exercises].sort(() => Math.random()-0.5);
+  state.exIndex = 0; state.exRichtig = 0; state.exFalsch = 0; state.exAnswered = false;
+  state.matchSelected = null; state.matchMatched = new Set();
+  state.orderPlaced = []; state.orderTokens = [];
+  updateExScore();
+  renderExercise();
+}
+
+function updateExScore() {
+  const r = document.getElementById('sc-r');
+  const f = document.getElementById('sc-f');
+  const g = document.getElementById('sc-g');
+  if(r) r.textContent = state.exRichtig;
+  if(f) f.textContent = state.exFalsch;
+  if(g) g.textContent = state.exRichtig + state.exFalsch;
+}
+
+function shuffle(a) { return [...a].sort(() => Math.random()-0.5); }
+
+function renderExercise() {
+  const area = document.getElementById('ex-area');
+  const result = document.getElementById('ex-result');
+  if(!area || !result) return;
+  if(state.exIndex >= state.exShuffled.length) { showExResult(); return; }
+
+  result.classList.remove('show');
+  area.style.display = 'block';
+  state.exAnswered = false;
+  state.matchSelected = null;
+  state.matchMatched = new Set();
+  state.orderPlaced = [];
+
+  const q = state.exShuffled[state.exIndex];
+  const total = state.exShuffled.length;
+
+  let inner = `<div class="ex-card">`;
+
+  // Badge
+  const badgeMap = {mc:'badge-mc',fill:'badge-fill',match:'badge-match',order:'badge-order',kana:'badge-kana'};
+  const labelMap = {mc:'Multiple Choice',fill:'Lückentext',match:'Zuordnung',order:'Satzstellung',kana:'Kana-Quiz'};
+  inner += `<span class="ex-type-badge ${badgeMap[q.type]||'badge-mc'}">${labelMap[q.type]||q.type}</span>`;
+  inner += `<div class="ex-question">${q.q}</div>`;
+
+  if(q.type === 'mc') {
+    const opts = shuffle(q.choices);
+    inner += `<div class="mc-choices">${opts.map(o => `
+      <button class="mc-btn" data-ans="${escAttr(o)}" onclick="checkMC(this,'${esc(o)}','${esc(q.ans)}',this.parentElement)">
+        ${o}
+      </button>`).join('')}</div>`;
+
+  } else if(q.type === 'fill') {
+    inner += `<div class="fill-row">
+      <input class="fill-in" id="fill-input" placeholder="Antwort eingeben …" autocomplete="off">
+      <button class="check-btn" id="fill-btn" onclick="checkFill('${esc(q.ans)}')">Prüfen</button>
+    </div>
+    <p style="font-size:0.72rem;color:#bbb;margin-top:0.4rem;">↵ Enter zum Prüfen</p>`;
+
+  } else if(q.type === 'match') {
+    const shuffledJP = shuffle(q.pairs.map(p=>p.jp));
+    const shuffledDE = shuffle(q.pairs.map(p=>p.de));
+    const pairMap = JSON.stringify(q.pairs.reduce((o,p) => { o[p.jp]=p.de; return o; }, {}));
+    inner += `<div class="match-area">
+      <div class="match-col">
+        <div class="match-col-label">Japanisch</div>
+        ${shuffledJP.map(jp => `<div class="match-item" data-val="${escAttr(jp)}" data-side="jp" onclick="selectMatch(this,'jp',${esc(pairMap)})">${jp}</div>`).join('')}
+      </div>
+      <div class="match-col">
+        <div class="match-col-label">Deutsch</div>
+        ${shuffledDE.map(de => `<div class="match-item" data-val="${escAttr(de)}" data-side="de" onclick="selectMatch(this,'de',${esc(pairMap)})">${de}</div>`).join('')}
+      </div>
+    </div>
+    <p style="font-size:0.72rem;color:#bbb;margin-top:0.6rem;">Wähle ein japanisches Wort, dann das deutsche Wort.</p>`;
+
+  } else if(q.type === 'order') {
+    const tokens = shuffle(q.words);
+    state.orderTokens = [...tokens];
+    state.orderPlaced = [];
+    inner += `<div class="order-tokens" id="order-tokens">
+      ${tokens.map((w,i) => `<div class="order-token" data-idx="${i}" onclick="placeToken(this,'${esc(q.ans)}','${esc(q.hint||'')}')">
+        ${w}
+      </div>`).join('')}
+    </div>
+    <div class="order-target" id="order-target"></div>
+    <p style="font-size:0.72rem;color:#bbb;margin-top:0.5rem;">Klicke auf die Wörter in der richtigen Reihenfolge.</p>
+    <button class="check-btn" id="order-check" onclick="checkOrder('${esc(q.ans)}')" style="margin-top:0.8rem;display:none;">Prüfen</button>`;
+
+  } else if(q.type === 'kana') {
+    if(q.kana) {
+      inner += `<div class="kana-quiz-card"><span class="kana-big">${q.kana}</span></div>
+        <div class="mc-choices">${shuffle(q.choices).map(o => `
+          <button class="mc-btn" data-ans="${escAttr(o)}" onclick="checkMC(this,'${esc(o)}','${esc(q.ans)}',this.parentElement)">
+            ${o}
+          </button>`).join('')}</div>`;
+    } else {
+      inner += `<div style="font-size:1rem;color:#777;margin-bottom:1rem;">Welches Hiragana-Zeichen ist <strong style="color:var(--sumi);font-size:1.3rem;">"${q.prompt}"</strong>?</div>
+        <div class="mc-choices">${shuffle(q.choices).map(o => `
+          <button class="mc-btn" data-ans="${escAttr(o)}" style="font-family:'Shippori Mincho',serif;font-size:1.5rem;" onclick="checkMC(this,'${esc(o)}','${esc(q.ans)}',this.parentElement)">
+            ${o}
+          </button>`).join('')}</div>`;
+    }
+  }
+
+  inner += `
+    <div class="ex-feedback" id="ex-feedback"></div>
+    <div class="ex-nav">
+      <span class="ex-progress">Aufgabe ${state.exIndex+1} / ${total}</span>
+      <button class="next-ex-btn" id="next-ex-btn" onclick="nextEx()">Weiter →</button>
+    </div>
+  </div>`;
+
+  area.innerHTML = inner;
+
+  if(q.type === 'fill') {
+    const inp = document.getElementById('fill-input');
+    if(inp) {
+      inp.addEventListener('keydown', e => { if(e.key==='Enter' && !state.exAnswered) checkFill(q.ans); });
+      setTimeout(() => inp.focus(), 60);
+    }
+  }
+}
+
+// Escape helpers
+function esc(s) { return String(s).replace(/\\/g,'\\\\').replace(/'/g,"\\'"); }
+function escAttr(s) { return String(s).replace(/"/g,'&quot;'); }
+
+function checkMC(btn, choice, answer, grid) {
+  if(state.exAnswered) return;
+  state.exAnswered = true;
+  grid.querySelectorAll('.mc-btn').forEach(b => {
+    b.disabled = true;
+    if(b.dataset.ans === answer) b.classList.add('correct');
+  });
+  if(choice === answer) {
+    btn.classList.add('correct');
+    state.exRichtig++;
+    showExFeedback(true, '✓ Richtig! 正解！');
+  } else {
+    btn.classList.add('wrong');
+    state.exFalsch++;
+    showExFeedback(false, `✗ Falsch. Richtig: „${answer}"`);
+  }
+  updateExScore();
+  showNextBtn();
+}
+
+function checkFill(answer) {
+  if(state.exAnswered) return;
+  const inp = document.getElementById('fill-input');
+  if(!inp || !inp.value.trim()) return;
+  state.exAnswered = true;
+  inp.disabled = true;
+  const btn = document.getElementById('fill-btn');
+  if(btn) btn.disabled = true;
+
+  const norm = s => s.toLowerCase().trim()
+    .replace(/[éèê]/g,'e').replace(/[àâ]/g,'a')
+    .replace(/ō/g,'o').replace(/ū/g,'u').replace(/ā/g,'a')
+    .replace(/[-\s]/g,'');
+
+  if(norm(inp.value) === norm(answer)) {
+    inp.classList.add('correct');
+    state.exRichtig++;
+    showExFeedback(true, '✓ Richtig! 正解！');
+  } else {
+    inp.classList.add('wrong');
+    state.exFalsch++;
+    showExFeedback(false, `✗ Falsch. Richtig: „${answer}"`);
+  }
+  updateExScore();
+  showNextBtn();
+}
+
+// Matching logic
+function selectMatch(el, side, pairMapStr) {
+  if(el.classList.contains('matched')) return;
+  const pairMap = typeof pairMapStr === 'string' ? JSON.parse(pairMapStr) : pairMapStr;
+
+  if(!state.matchSelected) {
+    // First selection
+    if(side !== 'jp') { return; } // Must start with JP
+    document.querySelectorAll('.match-item[data-side="jp"]').forEach(b => b.classList.remove('selected'));
+    el.classList.add('selected');
+    state.matchSelected = el;
+  } else {
+    if(side === 'jp') {
+      // Reselect JP
+      document.querySelectorAll('.match-item[data-side="jp"]').forEach(b => b.classList.remove('selected'));
+      el.classList.add('selected');
+      state.matchSelected = el;
+      return;
+    }
+    // Check match
+    const jpVal = state.matchSelected.dataset.val;
+    const deVal = el.dataset.val;
+    const correct = pairMap[jpVal] === deVal;
+    if(correct) {
+      state.matchSelected.classList.remove('selected');
+      state.matchSelected.classList.add('matched');
+      el.classList.add('matched');
+      state.matchMatched.add(jpVal);
+      state.matchSelected = null;
+      // Check if all matched
+      const total = document.querySelectorAll('.match-item[data-side="jp"]').length;
+      if(state.matchMatched.size === total) {
+        state.exAnswered = true;
+        state.exRichtig++;
+        updateExScore();
+        showExFeedback(true, '✓ Alle Paare gefunden! 正解！');
+        showNextBtn();
+      }
+    } else {
+      el.classList.add('wrong-match');
+      state.matchSelected.classList.add('wrong-match');
+      state.exFalsch++;
+      updateExScore();
+      setTimeout(() => {
+        el.classList.remove('wrong-match');
+        state.matchSelected.classList.remove('wrong-match','selected');
+        state.matchSelected = null;
+      }, 600);
+    }
+  }
+}
+
+// Word order logic
+function placeToken(el, answerStr, hint) {
+  if(el.classList.contains('placed')) return;
+  el.classList.add('placed');
+  const word = el.textContent.trim();
+  state.orderPlaced.push(word);
+
+  const target = document.getElementById('order-target');
+  if(target) {
+    const placed = document.createElement('div');
+    placed.className = 'placed-token';
+    placed.textContent = word;
+    placed.dataset.word = word;
+    placed.onclick = () => removeToken(placed, el);
+    target.appendChild(placed);
+  }
+  const checkBtn = document.getElementById('order-check');
+  if(checkBtn) checkBtn.style.display = 'inline-block';
+}
+
+function removeToken(placed, original) {
+  if(state.exAnswered) return;
+  const word = placed.dataset.word;
+  const idx = state.orderPlaced.lastIndexOf(word);
+  if(idx !== -1) state.orderPlaced.splice(idx,1);
+  placed.remove();
+  if(original) original.classList.remove('placed');
+  const checkBtn = document.getElementById('order-check');
+  if(checkBtn && state.orderPlaced.length === 0) checkBtn.style.display = 'none';
+}
+
+function checkOrder(answer) {
+  if(state.exAnswered) return;
+  const placed = state.orderPlaced.join(' ');
+  const norm = s => s.trim().replace(/\s+/g,' ');
+  if(norm(placed) === norm(answer)) {
+    state.exRichtig++;
+    showExFeedback(true, '✓ Richtige Reihenfolge! 正解！');
+    document.querySelectorAll('#order-target .placed-token').forEach(t => t.style.borderColor='var(--teal)');
+  } else {
+    state.exFalsch++;
+    showExFeedback(false, `✗ Falsch. Richtig: „${answer}"`);
+    document.querySelectorAll('#order-target .placed-token').forEach(t => t.style.borderColor='var(--red-jp)');
+  }
+  state.exAnswered = true;
+  updateExScore();
+  const btn = document.getElementById('order-check');
+  if(btn) btn.disabled = true;
+  showNextBtn();
+}
+
+function showExFeedback(ok, msg) {
+  const fb = document.getElementById('ex-feedback');
+  if(!fb) return;
+  fb.className = 'ex-feedback show ' + (ok ? 'ok' : 'nok');
+  fb.textContent = msg;
+}
+
+function showNextBtn() {
+  const nb = document.getElementById('next-ex-btn');
+  if(nb) nb.classList.add('show');
+}
+
+function nextEx() {
+  state.exIndex++;
+  renderExercise();
+}
+
+function showExResult() {
+  const area = document.getElementById('ex-area');
+  const result = document.getElementById('ex-result');
+  if(!area || !result) return;
+  area.style.display = 'none';
+
+  const total = state.exShuffled.length;
+  const pct = Math.round((state.exRichtig / total) * 100);
+  const emoji = pct>=90?'🏆':pct>=70?'🌸':pct>=50?'💪':'📚';
+  const title = pct>=90?'Ausgezeichnet!':pct>=70?'Sehr gut!':pct>=50?'Gut gemacht!':'Weiter üben!';
+  const jpTitle = pct>=90?'素晴らしい！':pct>=70?'よくできました！':pct>=50?'まあまあです！':'もう一度！';
+
+  result.innerHTML = `
+    <div class="result-emoji">${emoji}</div>
+    <div class="result-title">${title}</div>
+    <div class="result-jp">${jpTitle}</div>
+    <div class="result-score"><span>${state.exRichtig}</span> / ${total}</div>
+    <button class="restart-btn" onclick="restartEx()">Nochmal üben 🔄</button>
+  `;
+  result.classList.add('show');
+
+  const w = WEEKS[state.currentWeek];
+  if(pct >= 70 && !state.completedWeeks.includes(w.id)) {
+    state.completedWeeks.push(w.id);
+    saveState(); renderStats(); buildWeeksNav();
+  }
+}
+
+function restartEx() {
+  const w = WEEKS[state.currentWeek];
+  initExercises(w);
+  const result = document.getElementById('ex-result');
+  if(result) result.classList.remove('show');
+}
+
+// ═══════════════════════════════════════════
+//  KEYBOARD
+// ═══════════════════════════════════════════
+document.addEventListener('keydown', e => {
+  if((e.key===' '||e.key==='Enter') && state.exAnswered) {
+    const nb = document.getElementById('next-ex-btn');
+    if(nb && nb.classList.contains('show')) { e.preventDefault(); nextEx(); }
+  }
+});
+
+// ═══════════════════════════════════════════
+//  START
+// ═══════════════════════════════════════════
+init();
+</script>
+</body>
+</html>
